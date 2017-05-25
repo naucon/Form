@@ -182,7 +182,9 @@ class FormWithTranslatorBridgeTest extends \PHPUnit_Framework_TestCase
         }
 
         foreach ($dataMap as $key => $value) {
-            $this->assertEquals($value, $entity->$methods[$key](), 'unexpected form property value of ' . $key . ', getter ' . $methods[$key] . '()');
+            $methodName = $methods[$key];
+            $actualValue = $entity->$methodName();
+            $this->assertEquals($value, $actualValue, 'unexpected form property value of ' . $key . ', getter ' . $methodName . '()');
         }
 
         $errors = $form->getErrors();

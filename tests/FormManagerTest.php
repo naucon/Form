@@ -210,7 +210,10 @@ class FormManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('TOKEN', $form->getSynchronizerToken(), 'unexpected csrf token');
 
         foreach ($dataMap as $key => $value) {
-            $this->assertEquals($value, $actualValue = $entity->$methods[$key](), 'unexpected form property value of ' . $key . ', getter ' . $methods[$key] . '()');
+            $methodName = $methods[$key];
+            $actualValue = $entity->$methodName();
+
+            $this->assertEquals($value, $actualValue, 'unexpected form property value of ' . $key . ', getter ' . $methodName . '()');
         }
 
         $errors = $form->getErrors();
@@ -371,7 +374,8 @@ class FormManagerTest extends \PHPUnit_Framework_TestCase
 
         foreach ($dataMap as $entityName => $entityPayload) {
             foreach ($entityPayload as $key => $value) {
-                $this->assertEquals($value, $entities[$entityName]->$methods[$key](), 'unexpected form property value of ' . $key . ', getter ' . $methods[$key] . '()');
+                $methodName = $methods[$key];
+                $this->assertEquals($value, $entities[$entityName]->$methodName(), 'unexpected form property value of ' . $key . ', getter ' . $methodName . '()');
             }
         }
 
@@ -870,16 +874,17 @@ class FormManagerTest extends \PHPUnit_Framework_TestCase
             }
 
             foreach ($entityPayload as $key => $value) {
+                $methodName = $methods[$entityName][$key];
                 if ($collectionType == FormCollectionInterface::COLLECTION_TYPE_ONE && $entityName != $dataMap['ncform_option']) {
-                    $this->assertNull($entities[$entityName]->$methods[$entityName][$key](), 'unexpected form property value of ' . $key . ', getter ' . $methods[$entityName][$key] . '()');
+                    $this->assertNull($entities[$entityName]->$methodName(), 'unexpected form property value of ' . $key . ', getter ' . $methodName . '()');
                 } elseif ($collectionType == FormCollectionInterface::COLLECTION_TYPE_MANY) {
                     if (in_array($entityName, $dataMap['ncform_option'])) {
-                        $this->assertEquals($value, $entities[$entityName]->$methods[$entityName][$key](), 'unexpected form property value of ' . $key . ', getter ' . $methods[$entityName][$key] . '()');
+                        $this->assertEquals($value, $entities[$entityName]->$methodName(), 'unexpected form property value of ' . $key . ', getter ' . $methodName . '()');
                     } else {
-                        $this->assertNull($entities[$entityName]->$methods[$entityName][$key](), 'unexpected form property value of ' . $key . ', getter ' . $methods[$entityName][$key] . '()');
+                        $this->assertNull($entities[$entityName]->$methodName(), 'unexpected form property value of ' . $key . ', getter ' . $methodName . '()');
                     }
                 } elseif ($collectionType == FormCollectionInterface::COLLECTION_TYPE_ALL) {
-                    $this->assertEquals($value, $entities[$entityName]->$methods[$entityName][$key](), 'unexpected form property value of ' . $key . ', getter ' . $methods[$entityName][$key] . '()');
+                    $this->assertEquals($value, $entities[$entityName]->$methodName(), 'unexpected form property value of ' . $key . ', getter ' . $methodName . '()');
                 }
             }
         }

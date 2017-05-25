@@ -180,7 +180,9 @@ class PropertyMapperTest extends \PHPUnit_Framework_TestCase
 
         foreach ($dataMap as $key => $value) {
             if (array_key_exists($key, $getter)) {
-                $this->assertEquals($value, $actualValue = $entity->$getter[$key](), 'unexpected form property value of ' . $key . ', getter ' . $getter[$key] . '()');
+                $methodName = $getter[$key];
+                $actualValue = $entity->$methodName();
+                $this->assertEquals($value, $actualValue, 'unexpected form property value of ' . $key . ', getter ' . $methodName . '()');
             }
         }
     }
@@ -215,7 +217,8 @@ class PropertyMapperTest extends \PHPUnit_Framework_TestCase
     {
         foreach ($dataMap as $key => $value) {
             if (array_key_exists($key, $setter)) {
-                $entity->$setter[$key]($value);
+                $methodName = $setter[$key];
+                $entity->$methodName($value);
             }
         }
 

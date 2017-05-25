@@ -187,7 +187,9 @@ class FormTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('TOKEN', $form->getSynchronizerToken(), 'unexpected csrf token');
 
         foreach ($dataMap as $key => $value) {
-            $this->assertEquals($value, $actualValue = $entity->$methods[$key](), 'unexpected form property value of ' . $key . ', getter ' . $methods[$key] . '()');
+            $methodName = $methods[$key];
+            $actualValue = $entity->$methodName();
+            $this->assertEquals($value, $actualValue, 'unexpected form property value of ' . $key . ', getter ' . $methodName . '()');
         }
 
         $errors = $form->getErrors();

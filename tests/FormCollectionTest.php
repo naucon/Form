@@ -264,7 +264,8 @@ class FormCollectionTest extends \PHPUnit_Framework_TestCase
         // multiple entites
         foreach ($dataMap as $entityName => $entityPayload) {
             foreach ($entityPayload as $key => $value) {
-                $this->assertEquals($value, $entities[$entityName]->$methods[$key](), 'unexpected form property value of ' . $key . ', getter ' . $methods[$key] . '()');
+                $methodName = $methods[$key];
+                $this->assertEquals($value, $entities[$entityName]->$methodName(), 'unexpected form property value of ' . $key . ', getter ' . $methodName . '()');
             }
         }
 
@@ -692,10 +693,11 @@ class FormCollectionTest extends \PHPUnit_Framework_TestCase
             }
 
             foreach ($entityPayload as $key => $value) {
+                $methodName = $methods[$entityName][$key];
                 if ($collectionType == FormCollectionInterface::COLLECTION_TYPE_ONE && $entityName != $dataMap['ncform_option']) {
-                    $this->assertNull($entities[$entityName]->$methods[$entityName][$key](), 'unexpected form property value of ' . $key . ', getter ' . $methods[$entityName][$key] . '()');
+                    $this->assertNull($entities[$entityName]->$methodName(), 'unexpected form property value of ' . $key . ', getter ' . $methodName . '()');
                 } else {
-                    $this->assertEquals($value, $entities[$entityName]->$methods[$entityName][$key](), 'unexpected form property value of ' . $key . ', getter ' . $methods[$entityName][$key] . '()');
+                    $this->assertEquals($value, $entities[$entityName]->$methodName(), 'unexpected form property value of ' . $key . ', getter ' . $methodName . '()');
                 }
             }
         }
