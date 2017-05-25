@@ -1,0 +1,9 @@
+testform:
+  username: "Benutzername"
+  firstname: "Vorname"
+  lastname: "Nachname"
+  email: "E-Mail-Adresse"
+  age: "Alter"
+  product_number: "Produktnummer"
+  product_desc: "Bezeichnung"
+  price: "Preis"

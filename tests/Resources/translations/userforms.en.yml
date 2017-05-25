@@ -1,0 +1,6 @@
+testform:
+  username: "your user name"
+  firstname: "your first name"
+  lastname: "your last name"
+  email: "your email address"
+  age: "your age"

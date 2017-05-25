@@ -1,0 +1,14 @@
+Naucon\Form\Tests\Entities\UserWithConfig:
+    properties:
+        username:
+            - NotBlank:
+            - Length:
+                min: 5
+                max: 50
+
+        email:
+            - Email:
+
+        age:
+            - Type:
+                type: numeric

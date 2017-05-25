@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+    <class name="Naucon\Form\Tests\Entities\UserWithConfig">
+        <property name="username">
+            <constraint name="NotBlank" />
+            <constraint name="Length">
+                <option name="min">5</option>
+                <option name="max">50</option>
+            </constraint>
+        </property>
+        <property name="email">
+            <constraint name="Email" />
+        </property>
+        <property name="age">
+            <constraint name="Type">
+                <option name="type">numeric</option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>

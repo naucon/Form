@@ -1,0 +1,45 @@
+{
+    "name": "naucon/form",
+    "description": "The Package provides a form component for php to process and validate html forms. A form helper is also included to render your form in html markup (php oder smarty templates).",
+    "keywords": ["form", "forms", "collection", "validation", "csrf", "xsrf", "Cross-Site-Request-Forgery", "smarty"],
+    "homepage": "https://github.com/naucon/Form",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sven Sanzenbacher"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "psr/log": "~1.0",
+        "naucon/utility": "~1.0",
+        "naucon/htmlbuilder": "~1.0",
+        "symfony/validator": "~2.8",
+        "symfony/property-access": "~2.8",
+        "symfony/security-csrf": "~2.8",
+        "symfony/event-dispatcher": "~2.8",
+        "symfony/finder": "~2.8",
+        "symfony/options-resolver": "~2.3"
+    },
+    "require-dev": {
+        "symfony/intl": "~2.8",
+        "symfony/config": "~2.8",
+        "doctrine/annotations": "~1.0",
+        "doctrine/cache": "~1.0",
+        "naucon/iban": "~1.0",
+        "phpunit/phpunit": "~4.8"
+    },
+    "suggest": {
+        "symfony/config": "Is required to use xml mapping.",
+        "doctrine/annotations": "Is required to use annotation mapping.",
+        "doctrine/cache": "Is required to use annotation mapping.",
+        "naucon/iban": "Is required to validate iban."
+    },
+    "autoload": {
+        "psr-4": {"Naucon\\Form\\": "src/"}
+    },
+    "autoload-dev": {
+        "psr-4": {"Naucon\\Form\\Tests\\": "tests"}
+    }
+}

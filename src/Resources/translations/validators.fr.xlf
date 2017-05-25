@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="fr" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>This value shoud be a boolean.</source>
+                <target>This value shoud be a boolean.</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>This value shoud be a decimal.</source>
+                <target>This value shoud be a decimal.</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>This value is not a valid email address.</source>
+                <target>This value is not a valid email address.</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>This value shoud be FALSE.</source>
+                <target>This value shoud be FALSE.</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>This value is not a valid IBAN.</source>
+                <target>This value is not a valid IBAN.</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>This value shoud be a integer.</source>
+                <target>This value shoud be a integer.</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>This value is not a valid IP address.</source>
+                <target>This value is not a valid IP address.</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>This value shoud be numeric.</source>
+                <target>This value shoud be numeric.</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>This value is not valid.</source>
+                <target>This value is not valid.</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>This value shoud be a string.</source>
+                <target>This value shoud be a string.</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>This value shoud be TRUE.</source>
+                <target>This value shoud be TRUE.</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>This value is not a valid URL.</source>
+                <target>This value is not a valid URL.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
