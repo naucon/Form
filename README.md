@@ -39,7 +39,7 @@ Examples
 
 Start the build-in webserver to see the examples in action:
 
-    cd exampes
+    cd examples
     php -S 127.0.0.1:3000
 
 open url in browser

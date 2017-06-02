@@ -90,4 +90,40 @@ class FormHelperFieldTextTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('<input type="text" name="testform[0][comment]" value="foo" id="testform_0_comment" />' . PHP_EOL, $formHelper->render());
     }
+
+    public function testHelperWithSpecialChar()
+    {
+        $userEntity = new User();
+        $userEntity->setComment('">&Römer');
+
+        $entityContainerMap = $this->getMock('Naucon\Utility\Map');
+        $entityContainerMap->expects($this->any())
+            ->method('count')
+            ->will($this->returnValue(1));
+
+        $form = $this->getMock('Naucon\Form\FormInterface');
+        $form->expects($this->any())
+            ->method('getName')
+            ->will($this->returnValue('testform'));
+        $form->expects($this->any())
+            ->method('getEntityContainerMap')
+            ->will($this->returnValue($entityContainerMap));
+
+        $entityContainer = $this->getMock('Naucon\Form\Mapper\EntityContainerInterface');
+        $entityContainer->expects($this->any())
+            ->method('getForm')
+            ->will($this->returnValue($form));
+
+        $entityContainer->expects($this->any())
+            ->method('getEntity')
+            ->will($this->returnValue($userEntity));
+
+        $propertyObject = new Property($entityContainer, 'comment');
+
+        $formHelper = new FormHelperFieldText();
+        $formHelper->setProperty($propertyObject);
+        $formHelper->render();
+
+        $this->assertEquals('<input type="text" name="testform[comment]" value="&#34;>&#38;Römer" id="testform_comment" />' . PHP_EOL, $formHelper->render());
+    }
 }
