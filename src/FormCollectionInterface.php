@@ -18,6 +18,7 @@ namespace Naucon\Form;
 interface FormCollectionInterface extends FormInterface
 {
     const COLLECTION_TYPE_ALL = 'all';
+    const COLLECTION_TYPE_ANY = 'any';
     const COLLECTION_TYPE_ONE = 'one';
     const COLLECTION_TYPE_MANY = 'many';
 
