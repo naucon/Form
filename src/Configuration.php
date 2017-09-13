@@ -59,7 +59,7 @@ class Configuration
             'validation_groups' => null
         ));
 
-        $resolver->setAllowedValues('collection_type', array(FormCollectionInterface::COLLECTION_TYPE_ALL, FormCollectionInterface::COLLECTION_TYPE_MANY, FormCollectionInterface::COLLECTION_TYPE_ONE));
+        $resolver->setAllowedValues('collection_type', array(FormCollectionInterface::COLLECTION_TYPE_ALL, FormCollectionInterface::COLLECTION_TYPE_ANY, FormCollectionInterface::COLLECTION_TYPE_MANY, FormCollectionInterface::COLLECTION_TYPE_ONE));
     }
 
     /**

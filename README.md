@@ -15,6 +15,7 @@ The package can be integrated into any php web application (min. php5.5+).
 * Binding form data to an entity by getter and setter
 * validate form data by validation rule defined in the entity
 * secure forms with synchronizer token to prevent XSRF/CSRF vulnerabilities
+* support form collections
 * translate form labels and form violations
 * form helper to render html markup
 * rendering html forms with output filtering to prevent XSS vulnerabilities
@@ -457,9 +458,10 @@ To render the form we iterate through the form entites like this:
 
 The behaviour of a form collection can be specified with the `collection_type` option. The value can be one of these options FormCollectionInterface::COLLECTION_TYPE_ALL, FormCollectionInterface::COLLECTION_TYPE_MANY, FormCollectionInterface::COLLECTION_TYPE_ONE.
 
-* `FormCollectionInterface::COLLECTION_TYPE_ALL`: process all given form entities
-* `FormCollectionInterface::COLLECTION_TYPE_ONE`: process only one of the given form entities. The one is specified through the form option.
-* `FormCollectionInterface::COLLECTION_TYPE_MANY`: process some of the given form entities. The same are specified through the form option.
+* `FormCollectionInterface::COLLECTION_TYPE_ALL`: payload must bind all form entities
+* `FormCollectionInterface::COLLECTION_TYPE_ANY`: payload can bind any matching form entities
+* `FormCollectionInterface::COLLECTION_TYPE_ONE`: payload must bind one defined form entity. Which one is defined through the form option.
+* `FormCollectionInterface::COLLECTION_TYPE_MANY`: payload must bind one or more form entities. Which ones are defined through form options.
 
 
 #### Collection type one

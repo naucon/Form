@@ -213,6 +213,11 @@ class FormCollection extends FormAbstract implements FormCollectionInterface
                         $bound = true;
                     }
                     break;
+                case self::COLLECTION_TYPE_ANY:
+                    if ($this->getEntityContainerMap()->count() > 0) {
+                        $bound = true;
+                    }
+                    break;
             }
 
         }
