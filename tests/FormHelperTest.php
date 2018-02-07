@@ -9,21 +9,16 @@
  */
 namespace Naucon\Form\Tests;
 
-use Naucon\Form\Form;
 use Naucon\Form\Configuration;
+use Naucon\Form\Form;
 use Naucon\Form\FormCollection;
 use Naucon\Form\FormHelper;
-use Naucon\Form\Helper\FormHelperFieldHidden;
-use Naucon\Form\Helper\FormHelperFieldText;
-use Naucon\Form\Helper\FormHelperFieldTextarea;
-use Naucon\Form\Helper\FormHelperFieldValue;
-use Naucon\Form\Mapper\EntityContainerInterface;
 use Naucon\Form\Helper\FormHelperChoiceCheckbox;
 use Naucon\Form\Helper\FormHelperChoiceRadio;
 use Naucon\Form\Helper\FormHelperChoiceSelect;
-use Naucon\Form\Mapper\Property;
-use Naucon\Form\Tests\Entities\User;
+use Naucon\Form\Mapper\EntityContainerInterface;
 use Naucon\Form\Tests\Entities\Product;
+use Naucon\Form\Tests\Entities\User;
 use Naucon\Form\Validator\Validator;
 
 class FormHelperTest extends \PHPUnit_Framework_TestCase
@@ -1004,5 +999,24 @@ class FormHelperTest extends \PHPUnit_Framework_TestCase
         $expectedString .= '<option value="1">subscribe</option>';
         $expectedString .= '</select>' . PHP_EOL;
         $this->assertEquals($expectedString, $formHelper->render());
+    }
+
+    public function testFormWithIdOptionShouldBeInjectable()
+    {
+        $userEntity = new User();
+
+        $configuration = new Configuration();
+        $form = new Form($userEntity, 'testform', $configuration);
+
+        $method  = 'post';
+        $options = array('id' => 'foo', 'method' => 'get', 'class' => 'bar', 'style' => 'woo');
+
+        $expectedResult = '<form method="post" id="foo" class="bar" style="woo">' . PHP_EOL;
+        $expectedResult.= '<input type="hidden" name="_csrf_token" value="TOKEN" />' . PHP_EOL;
+
+        $formHelper = new FormHelper($form);
+        $actualResult = $formHelper->formStart($method, null, null, $options);
+
+        $this->assertEquals($expectedResult, $actualResult);
     }
 }

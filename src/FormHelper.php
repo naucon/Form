@@ -36,6 +36,11 @@ class FormHelper extends AbstractFormHelper
      */
     protected $helperMap;
 
+    /**
+     * @var    array
+     */
+    protected $attributeWhitelist = [];
+
 
     /**
      * Constructor
@@ -54,9 +59,18 @@ class FormHelper extends AbstractFormHelper
 
         $this->setHtmlElement($htmlElement);
 
+        $this->attributeWhitelist = array('id', 'class', 'style');
+
         parent::__construct($form);
     }
 
+    /**
+     * @param array $attributeWhitelist
+     */
+    public function setAttributeWhitelist(array $attributeWhitelist)
+    {
+        $this->attributeWhitelist = $attributeWhitelist;
+    }
 
     /**
      * @return    HtmlBuilder\HtmlElementInterface
@@ -154,10 +168,10 @@ class FormHelper extends AbstractFormHelper
         $htmlElement->setAction($action);
         $htmlElement->setEnctype($enctype);
 
-        foreach ($options as $key => $value) {
+        foreach ($options as $attributeName => $attributeValue) {
             // prevent, that already set attributes are overwritten by options
-            if (!$htmlElement->hasAttribute($key)) {
-                $htmlElement->setAttribute($key, $value);
+            if ($this->isAttributeInjectable($htmlElement, $attributeName)) {
+                $htmlElement->setAttribute($attributeName, $attributeValue);
             }
         }
 
@@ -166,6 +180,7 @@ class FormHelper extends AbstractFormHelper
         $render.= $htmlBuilder->renderContent($htmlElement) . PHP_EOL;
         return $render;
     }
+
 
     /**
      * @return    string        html output
@@ -176,5 +191,20 @@ class FormHelper extends AbstractFormHelper
 
         $htmlBuilder = new HtmlBuilder\HtmlBuilder();
         return $htmlBuilder->renderEndTag($htmlElement) . PHP_EOL;
+    }
+
+    /**
+     * @param HtmlBuilder\HtmlElementInterface $htmlElement
+     * @param string $attributeName
+     * @return bool
+     */
+    protected function isAttributeInjectable(HtmlBuilder\HtmlElementInterface $htmlElement, $attributeName)
+    {
+        if (in_array($attributeName, $this->attributeWhitelist)) {
+            return true;
+        } elseif (!$htmlElement->hasAttribute($attributeName)) {
+            return true;
+        }
+        return false;
     }
 }
