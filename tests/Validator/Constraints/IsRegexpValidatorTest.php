@@ -35,7 +35,7 @@ class IsRegexpValidatorTest extends AbstractConstraintValidatorTest
             array('-2.95', '/(ipsum){1}/', false),
             array('abc', '/(ipsum){1}/', false),
             array('', '/(ipsum){1}/', false),
-            array(null, '/(ipsum){1}/', false),
+            array(null, '/(ipsum){1}/', true),
         );
     }
 

@@ -44,7 +44,7 @@ class IsUrlValidatorTest extends AbstractConstraintValidatorTest
             array('-2.95', false),
             //array('abc', false), // TODO regexp should not match
             //array('', false), // TODO regexp should not match
-            array(null, false),
+            array(null, true),
         );
     }
 

@@ -34,7 +34,7 @@ class IsStringValidatorTest extends AbstractConstraintValidatorTest
             array('-2.95', true),
             array('abc', true),
             array('', true),
-            array(null, false),
+            array(null, true),
         );
     }
 

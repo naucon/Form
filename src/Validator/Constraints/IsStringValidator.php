@@ -26,7 +26,7 @@ class IsStringValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint)
     {
-        if (is_string($value)) {
+        if (is_string($value) || $value === null) {
             return;
         }
 

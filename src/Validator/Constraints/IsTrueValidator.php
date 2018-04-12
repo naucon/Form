@@ -26,6 +26,10 @@ class IsTrueValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint)
     {
+        if ($value === null) {
+            return;
+        }
+
         if (is_bool($value) && $value === true) {
             return;
         }

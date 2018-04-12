@@ -59,6 +59,7 @@ class Product
     {
         $metadata->addPropertyConstraint('productNumber', new Assert\NotBlank());
         $metadata->addPropertyConstraint('productDesc', new Assert\NotBlank());
+        $metadata->addPropertyConstraint('price', new Assert\NotBlank());
         $metadata->addPropertyConstraint('price', new NauconAsserts\IsDecimal());
     }
 }

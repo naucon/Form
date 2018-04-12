@@ -26,6 +26,10 @@ class IsEmailValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint)
     {
+        if ($value === null) {
+            return;
+        }
+
         $mandatory = true;
 
         if ($mandatory) {

@@ -26,6 +26,10 @@ class IsIntegerValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint)
     {
+        if ($value === null) {
+            return;
+        }
+
         $regexp = '/^([-]{0,1})(\d{1,})$/';
 
         if (is_int($value)) {
