@@ -30,6 +30,10 @@ class IsIbanValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint)
     {
+        if ($value === null) {
+            return;
+        }
+
         if (!$constraint instanceof IsIban) {
             throw new UnexpectedTypeException($constraint, __NAMESPACE__ . '\IsIban');
         }
@@ -55,10 +59,10 @@ class IsIbanValidator extends ConstraintValidator
         if ($type->isValid()) {
             if (!is_null($countryCodes)) {
                 if (in_array($type->getCountryCode(), $countryCodes)) {
-                    return true;
+                    return;
                 }
             } else {
-                return true;
+                return;
             }
         }
 

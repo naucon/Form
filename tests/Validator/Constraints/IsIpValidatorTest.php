@@ -40,7 +40,7 @@ class IsIpValidatorTest extends AbstractConstraintValidatorTest
             array('-2.95', false),
             array('abc', false),
             array('', false),
-            array(null, false),
+            array(null, true),
         );
     }
 

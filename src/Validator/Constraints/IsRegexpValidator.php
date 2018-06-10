@@ -36,6 +36,10 @@ class IsRegexpValidator extends ConstraintValidator
             throw new ConstraintDefinitionException('Given Regexp on regexp contrain is empty');
         }
 
+        if ($value === null) {
+            return;
+        }
+
         if (preg_match($constraint->regexp, (string)$value)) {
             return;
         }
