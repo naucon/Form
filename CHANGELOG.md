@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.0 (2018-06-10)
+
+  * breaking change of behavior in validators so that null values are valid (like in symfony).
+
 ## 1.0.2 (2018-02-07)
 
   * add attribute whitelist (id, class, style) to overwrite whitelisted attributes in `formStart` helper.
