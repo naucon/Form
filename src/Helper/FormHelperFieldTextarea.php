@@ -29,16 +29,16 @@ class FormHelperFieldTextarea extends AbstractFormHelperField
         $htmlElement = new HtmlTextarea($this->getProperty()->getFormName(), $this->getProperty()->getFormValue());
         $htmlElement->setId($this->getProperty()->getFormId());
 
-        foreach ($this->getOptions()->get() as $key => $value) {
-            if ($key == 'value') {
+        foreach ($this->getOptions()->get() as $attributeName => $attributeValue) {
+            if ($attributeName == 'value') {
                 if (strlen($this->getProperty()->getFormValue()) == 0) {
                     $htmlElement->setContent($value);
                 }
 
             } else {
                 // prevent, that already set attributes are overwritten by options
-                if (!$htmlElement->hasAttribute($key)) {
-                    $htmlElement->setAttribute($key, $value);
+                if (!$htmlElement->hasAttribute($attributeName) || $this->isAttributeInjectable($attributeName)) {
+                    $htmlElement->setAttribute($attributeName, $attributeValue);
                 }
             }
         }

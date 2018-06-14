@@ -32,6 +32,20 @@ abstract class AbstractFormHelperField implements FormHelperFieldInterface
      */
     protected $options;
 
+    /**
+     * @var    array
+     */
+    protected $attributeWhitelist = [];
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->attributeWhitelist = array('id', 'class', 'style');
+    }
+
 
     /**
      * @return     Property
@@ -66,5 +80,25 @@ abstract class AbstractFormHelperField implements FormHelperFieldInterface
     public function setOptions(array $options=array())
     {
         $this->getOptions()->setAll($options);
+    }
+
+    /**
+     * @param string $attributeName
+     * @return bool
+     */
+    protected function isAttributeInjectable($attributeName)
+    {
+        if (in_array($attributeName, $this->attributeWhitelist)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @param array $attributeWhitelist
+     */
+    public function setAttributeWhitelist(array $attributeWhitelist)
+    {
+        $this->attributeWhitelist = $attributeWhitelist;
     }
 }

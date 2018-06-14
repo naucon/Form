@@ -29,10 +29,10 @@ class FormHelperFieldText extends AbstractFormHelperField
         $htmlElement = new HtmlInputText($this->getProperty()->getFormName(), $this->getProperty()->getFormValue());
         $htmlElement->setId($this->getProperty()->getFormId());
 
-        foreach ($this->getOptions()->get() as $key => $value) {
+        foreach ($this->getOptions()->get() as $attributeName => $attributeValue) {
             // prevent, that already set attributes are overwritten by options
-            if (!$htmlElement->hasAttribute($key)) {
-                $htmlElement->setAttribute($key, $value);
+            if (!$htmlElement->hasAttribute($attributeName) || $this->isAttributeInjectable($attributeName)) {
+                $htmlElement->setAttribute($attributeName, $attributeValue);
             }
         }
 

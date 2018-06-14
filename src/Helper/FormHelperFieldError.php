@@ -34,10 +34,10 @@ class FormHelperFieldError extends AbstractFormHelperField
             $htmlElement = new HtmlSpan($content);
             $htmlElement->setClass('ncFormError');
 
-            foreach ($this->getOptions()->get() as $key => $value) {
+            foreach ($this->getOptions()->get() as $attributeName => $attributeValue) {
                 // prevent, that already set attributes are overwritten by options
-                if (!$htmlElement->hasAttribute($key)) {
-                    $htmlElement->setAttribute($key, $value);
+                if (!$htmlElement->hasAttribute($attributeName) || $this->isAttributeInjectable($attributeName)) {
+                    $htmlElement->setAttribute($attributeName, $attributeValue);
                 }
             }
 

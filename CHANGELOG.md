@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.1 (2018-06-14)
+
+  * add attribute whitelist (id, class, style) to `formField`, `formChoise` helper.
+  * improve docs by adding example of smarty with form collection and `ncform_option`.
+  * improve docs by adding example of smarty `ncform_field` with `type="id"`, `type="name"`, `type="value"`.
+
 ## 1.1.0 (2018-06-10)
 
   * breaking change of behavior in validators so that null values are valid (like in symfony).

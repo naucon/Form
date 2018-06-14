@@ -354,9 +354,10 @@ The form package contains the following blocks and function plugins:
 Plugins                        | Tags              | Attributes
 :----------------------------- | :---------------- | :----------
 smarty_block_ncform            | {ncform}{/ncform} | from, method?, action?, enctype?, id?, class?, style?
-smarty_function_ncform_field   | {ncform_field}    | type, field, value?, maxlength?, id?, class?, style?
+smarty_function_ncform_field   | {ncform_field}    | type, field, value?, maxlength?, id?, class?, style? domain?
 smarty_function_ncform_choice  | {ncform_choice}   | type, field, value?, choices?, id?, class?, style?
 smarty_function_ncform_tag     | {ncform_tag}      | type, value?, id?, class?, style?
+smarty_function_ncform_option  | {ncform_option}   | type, choice, id?, class?, style?
 
 
 Example how to render a form in a smarty template:
@@ -403,6 +404,12 @@ The example above renders the following html markup:
 		 	<input type="reset" value="Reset" />
 		</fieldset>
 	</form>
+
+It's also possible to use the `{ncform_field}` element to output only parts of an input field, for example id, name, value
+
+
+    <input type="text" name="{ncform_field type='name' field='email'}" value="{ncform_field type='value' field='email'}" id="{ncform_field type='id' field='email'}" maxlength="32" />
+
 
 ##### without form helper
 
@@ -503,6 +510,18 @@ with helpers it would look like this:
     ?>
         <fieldset>
         	<?php echo $formHelper->formOption('radio', 'cc' ); ?>
+
+in smarty it would look like this:
+
+    
+    {ncform from=$form}
+        {ncform_tag type='errors'}
+        {foreach from=$formHelper item="formEntity"}
+            {if $formEntity->getName()=='cc'}
+                <fieldset>
+                    {ncform_option type='radio' choice='cc'}
+
+
 
 To define a default form option call `FormCollection::setFormOptionDefaultValues(array $defaultValues)` or `FormCollection::addFormOptionDefaultValues($formEntityName)`.
 
