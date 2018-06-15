@@ -32,7 +32,7 @@ class FormHelperFieldTextarea extends AbstractFormHelperField
         foreach ($this->getOptions()->get() as $attributeName => $attributeValue) {
             if ($attributeName == 'value') {
                 if (strlen($this->getProperty()->getFormValue()) == 0) {
-                    $htmlElement->setContent($value);
+                    $htmlElement->setContent($attributeValue);
                 }
 
             } else {

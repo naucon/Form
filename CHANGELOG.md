@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.2 (2018-06-15)
+
+  * fix issue in textarea helper with `value` attribute (introduced in 1.1.1)
+
 ## 1.1.1 (2018-06-14)
 
   * add attribute whitelist (id, class, style) to `formField`, `formChoise` helper.
