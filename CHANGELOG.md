@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.3 (2018-06-22)
+
+  * add data attributes to choice radio field.
+
 ## 1.1.2 (2018-06-15)
 
   * fix issue in textarea helper with `value` attribute (introduced in 1.1.1)
