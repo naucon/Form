@@ -137,11 +137,10 @@ class FormHelperChoiceRadioTest extends \PHPUnit_Framework_TestCase
         $formHelper->setChoice('foo');
         $formHelper->setOptions([
             'id' => 'foo2',
-            'class' => 'form-control'
+            'class' => 'form-control',
+            'data-attr' => 'data-attribute'
         ]);
-        $formHelper->render();
-
-        $this->assertEquals('<input type="radio" name="testform[comment]" value="foo" id="foo2" checked="checked" class="form-control" />' . PHP_EOL, $formHelper->render());
+        $this->assertEquals('<input type="radio" data-attr="data-attribute" name="testform[comment]" value="foo" id="foo2" checked="checked" class="form-control" />' . PHP_EOL, $formHelper->render());
     }
 
     public function testHelperWithOneFormCollection()

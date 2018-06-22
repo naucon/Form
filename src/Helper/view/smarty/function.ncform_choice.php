@@ -52,6 +52,10 @@ function smarty_function_ncform_choice($params, $smarty)
                     $fieldValue = $_val;
                     break;
                 default:
+                    if (strrpos($_key, 'data-') == 0) {
+                        $options[$_key] = (string)$_val;
+                        break;
+                    }
                     throw new \InvalidArgumentException("ncform_choice: unknown attribute '$_key'");
             }
         }
