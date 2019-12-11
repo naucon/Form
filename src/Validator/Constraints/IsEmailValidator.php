@@ -9,8 +9,11 @@
  */
 namespace Naucon\Form\Validator\Constraints;
 
+use Egulias\EmailValidator\EmailValidator;
+use Egulias\EmailValidator\Validation\RFCValidation;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
+use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 /**
  * Is Email address validator
@@ -21,18 +24,22 @@ use Symfony\Component\Validator\ConstraintValidator;
  */
 class IsEmailValidator extends ConstraintValidator
 {
-    const REGEXP = "/^([a-zA-Z0-9_\.\-]+\@([a-zA-Z0-9\-]+\.)+[a-zA-Z0-9]{2,4}+,?)+$/";
-
     /**
      * {@inheritdoc}
      */
     public function validate($value, Constraint $constraint)
     {
-        if ($value === null) {
+        if ($value === null || ($value === '' && !$constraint->isMandatory)) {
             return;
         }
 
-        if (is_string($value) && preg_match(self::REGEXP, $value)) {
+        if (!($constraint instanceof IsEmail)) {
+            throw new UnexpectedTypeException($constraint, IsEmail::class);
+        }
+
+        $validator = new EmailValidator();
+
+        if (is_string($value) && $validator->isValid($value, new RFCValidation())) {
             return;
         }
 
