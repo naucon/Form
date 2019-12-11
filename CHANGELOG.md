@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.3 (2019-12-11)
+
+  * Make isEmail regexp compatible to RFC2822
+
 ## 1.1.3 (2018-06-22)
 
   * add data attributes to choice radio field.
