@@ -21,6 +21,8 @@ use Symfony\Component\Validator\ConstraintValidator;
  */
 class IsEmailValidator extends ConstraintValidator
 {
+    const REGEXP = "/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/";
+
     /**
      * {@inheritdoc}
      */
@@ -30,19 +32,13 @@ class IsEmailValidator extends ConstraintValidator
             return;
         }
 
-        $mandatory = true;
-
-        if ($mandatory) {
-            $regexp = '/^([a-zA-Z0-9_\.\-]+\@([a-zA-Z0-9\-]+\.)+[a-zA-Z0-9]{2,4}+,?\s*)+$/';
-        } else {
-            $regexp = '/(?:^([a-zA-Z0-9_\.\-]+\@([a-zA-Z0-9\-]+\.)+[a-zA-Z0-9]{2,4}+,?\s*)+$|^$)/';
-        }
-
-        if (is_string($value) && preg_match($regexp, $value)) {
+        if (is_string($value) && preg_match(self::REGEXP, $value)) {
             return;
         }
 
-        $this->context->buildViolation($constraint->message)
-            ->addViolation();
+        $this->context
+            ->buildViolation($constraint->message)
+            ->addViolation()
+        ;
     }
 }
