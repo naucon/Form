@@ -25,6 +25,11 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 class IsEmailValidator extends ConstraintValidator
 {
     /**
+     * @var string
+     */
+    const REGEXP = '/^([a-zA-Z0-9_\.\-\+]+\@([a-zA-Z0-9\-\+]+\.?)+[a-zA-Z0-9]{0,10},?)+$/';
+
+    /**
      * {@inheritdoc}
      */
     public function validate($value, Constraint $constraint)
@@ -37,9 +42,7 @@ class IsEmailValidator extends ConstraintValidator
             throw new UnexpectedTypeException($constraint, IsEmail::class);
         }
 
-        $validator = new EmailValidator();
-
-        if (is_string($value) && $validator->isValid($value, new RFCValidation())) {
+        if (is_string($value) && preg_match(self::REGEXP, $value)) {
             return;
         }
 
