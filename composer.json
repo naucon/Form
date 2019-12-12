@@ -15,7 +15,6 @@
         "psr/log": "~1.0",
         "naucon/utility": "~1.0",
         "naucon/htmlbuilder": "~1.0",
-        "egulias/email-validator": "^2.1",
         "symfony/validator": "~2.8",
         "symfony/property-access": "~2.8",
         "symfony/security-csrf": "~2.8",
