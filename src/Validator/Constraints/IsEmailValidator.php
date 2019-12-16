@@ -11,6 +11,7 @@ namespace Naucon\Form\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
+use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 /**
  * Is Email address validator
@@ -22,27 +23,30 @@ use Symfony\Component\Validator\ConstraintValidator;
 class IsEmailValidator extends ConstraintValidator
 {
     /**
+     * @var string
+     */
+    const REGEXP = '/^([a-zA-Z0-9_\.\-\+]+\@([a-zA-Z0-9\-\+]+\.?)+[a-zA-Z0-9]{0,10},?)+$/';
+
+    /**
      * {@inheritdoc}
      */
     public function validate($value, Constraint $constraint)
     {
-        if ($value === null) {
+        if (!($constraint instanceof IsEmail)) {
+            throw new UnexpectedTypeException($constraint, IsEmail::class);
+        }
+
+        if ($value === null || ($value === '' && !$constraint->isMandatory)) {
             return;
         }
 
-        $mandatory = true;
-
-        if ($mandatory) {
-            $regexp = '/^([a-zA-Z0-9_\.\-]+\@([a-zA-Z0-9\-]+\.)+[a-zA-Z0-9]{2,4}+,?\s*)+$/';
-        } else {
-            $regexp = '/(?:^([a-zA-Z0-9_\.\-]+\@([a-zA-Z0-9\-]+\.)+[a-zA-Z0-9]{2,4}+,?\s*)+$|^$)/';
-        }
-
-        if (is_string($value) && preg_match($regexp, $value)) {
+        if (is_string($value) && preg_match(self::REGEXP, $value)) {
             return;
         }
 
-        $this->context->buildViolation($constraint->message)
-            ->addViolation();
+        $this->context
+            ->buildViolation($constraint->message)
+            ->addViolation()
+        ;
     }
 }
