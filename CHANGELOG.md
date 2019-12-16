@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.1.3 (2019-12-11)
+## 1.1.4 (2019-12-11)
 
   * Make isEmail regexp compatible to RFC2822
 
