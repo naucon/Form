@@ -32,12 +32,12 @@ class IsEmailValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint)
     {
-        if ($value === null || ($value === '' && !$constraint->isMandatory)) {
-            return;
-        }
-
         if (!($constraint instanceof IsEmail)) {
             throw new UnexpectedTypeException($constraint, IsEmail::class);
+        }
+
+        if ($value === null || ($value === '' && !$constraint->isMandatory)) {
+            return;
         }
 
         if (is_string($value) && preg_match(self::REGEXP, $value)) {
