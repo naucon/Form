@@ -11,24 +11,24 @@
         }
     ],
     "require": {
-        "php": ">=5.5.0",
+        "php": ">=5.5.9",
         "psr/log": "~1.0",
         "naucon/utility": "~1.0",
         "naucon/htmlbuilder": "~1.0",
-        "symfony/validator": "~2.8",
-        "symfony/property-access": "~2.8",
-        "symfony/security-csrf": "~2.8",
-        "symfony/event-dispatcher": "~2.8",
-        "symfony/finder": "~2.8",
-        "symfony/options-resolver": "~2.3"
+        "symfony/validator": "~2.8 || ^3.0",
+        "symfony/property-access": "~2.8 || ^3.0",
+        "symfony/security-csrf": "~2.8 || ^3.0",
+        "symfony/event-dispatcher": "~2.8 || ^3.0",
+        "symfony/finder": "~2.8 || ^3.0",
+        "symfony/options-resolver": "~2.3 || ^3.0"
     },
     "require-dev": {
-        "symfony/intl": "~2.8",
-        "symfony/config": "~2.8",
+        "symfony/intl": "~2.8 || ^3.0",
+        "symfony/config": "~2.8 || ^3.0",
         "doctrine/annotations": "~1.0",
         "doctrine/cache": "~1.0",
         "naucon/iban": "~1.0",
-        "phpunit/phpunit": "~4.8"
+        "phpunit/phpunit": "~4.8 || ^3.0"
     },
     "suggest": {
         "symfony/config": "Is required to use xml mapping.",
