@@ -12,3 +12,5 @@ matrix:
 before_install:
     - composer --prefer-source install
 
+script: vendor/bin/phpunit --bootstrap vendor/autoload.php
+
