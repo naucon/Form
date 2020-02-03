@@ -10,7 +10,6 @@
 namespace Naucon\Form\Tests\Validator\Constraints;
 
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
-
 use Naucon\Form\Validator\Constraints\IsEmail;
 use Naucon\Form\Validator\Constraints\IsEmailValidator;
 
