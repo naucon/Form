@@ -7,8 +7,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Naucon\Form\Tests\Validator\Constraints;
 
+use Naucon\Form\Validator\Constraints\IsDecimal;
+use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 use Naucon\Form\Validator\Constraints\IsEmail;
 use Naucon\Form\Validator\Constraints\IsEmailValidator;
@@ -22,49 +25,90 @@ class IsEmailValidatorTest extends ConstraintValidatorTestCase
 
     public function valueProvider()
     {
-        return array(
-            array(true, false),
-            array('yourname@yourdomain', false),
-            array('@yourdomain.com', false),
-            array('yourname@yourdomain.com', true),
-            array('yourname@yourdomain.co.uk', true),
-            array('your.name@yourdomain.com', true),
-            array('your_name@yourdomain.com', true),
-            array('your_name@', false),
-            array('yourname@yourdomain.com foo', false),
-            array('foo yourname@yourdomain.com', false),
-            array('yourname@yourdomain.com <Your Name>', false),
-            array(0, false),
-            array(1, false),
-            array(2.95, false),
-            array(-2.95, false),
-            array('0', false),
-            array('2.95', false),
-            array('-2.95', false),
-            array('abc', false),
-            array('', false),
-            array(null, true),
+        return [
+            [true, false],
+            ['@yourdomain.com', false],
+            ['yourname@yourdomain.com', true],
+            ['yourname@yourdomain.co.uk', true],
+            ['disposable.style.email.with+symbol@example.com', true],
+            ['other.email-with-hyphen@example.com', true],
+            ['user.name+tag+sorting@example.com', true],
+            ['x@example.com', true],
+            ['example-indeed@strange.example.com', true],
+            ['example-indeed@strange-example.com', true],
+            ['admin@mailserver1', true],
+            ['example@s.example', true],
+            ['your.name@yourdomain.com', true],
+            ['your_name@yourdomain.com', true],
+            ['your_name@', false],
+            ['this is"not\allowed@example.com', false],
+            ['this\ still\"not\\allowed@example.com', false],
+            ['just"not"right@example.com', false],
+            ['yourname@yourdomain.com foo', false],
+            ['foo yourname@yourdomain.com', false],
+            ['yourname@yourdomain.com <Your Name>', false],
+            [0, false],
+            [1, false],
+            [2.95, false],
+            [-2.95, false],
+            ['0', false],
+            ['2.95', false],
+            ['-2.95', false],
+            ['abc', false],
+            ['', false],
+            [null, true],
+        ];
+    }
+
+    /**
+     */
+    public function testValidateWithWrongConstraint()
+    {
+        $this->setExpectedException(UnexpectedTypeException::class);
+
+        $constraint = new IsDecimal();
+
+        $this->validator->validate('email@at.me', $constraint);
+    }
+
+    /**
+     */
+    public function testValidateNotMandatory()
+    {
+        $constraint = new IsEmail(
+            [
+                'message'     => 'myMessage',
+                'isMandatory' => false
+            ]
         );
+
+        $this->validator->validate('', $constraint);
+        $this->assertNoViolation();
     }
 
     /**
      * @dataProvider valueProvider
-     * @param	mixed		$value				test value
-     * @param	bool		$expectedResult		expected result
+     *
+     * @param mixed $value          test value
+     * @param bool  $expectedResult expected result
      */
     public function testValidate($value, $expectedResult)
     {
-        $constraint = new IsEmail(array(
-            'message' => 'myMessage',
-        ));
+        $constraint = new IsEmail(
+            [
+                'message' => 'myMessage',
+            ]
+        );
 
         $this->validator->validate($value, $constraint);
 
         if ($expectedResult) {
             $this->assertNoViolation();
         } else {
-            $this->buildViolation('myMessage')
-                ->assertRaised();
+            $this
+                ->buildViolation('myMessage')
+                ->assertRaised()
+            ;
         }
     }
 }
