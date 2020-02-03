@@ -73,25 +73,25 @@ class FormHelperChoiceRadioTest extends \PHPUnit_Framework_TestCase
 
         $this->entityContainerMap->expects($this->any())
             ->method('count')
-            ->will($this->returnValue(1));
+            ->willReturn(1);
 
 
         $this->form->expects($this->any())
             ->method('getName')
-            ->will($this->returnValue('testform'));
+            ->willReturn('testform');
 
         $this->form->expects($this->any())
             ->method('getEntityContainerMap')
-            ->will($this->returnValue($this->entityContainerMap));
+            ->willReturn($this->entityContainerMap);
 
 
         $this->entityContainer->expects($this->any())
             ->method('getForm')
-            ->will($this->returnValue($this->form));
+            ->willReturn($this->form);
 
         $this->entityContainer->expects($this->any())
             ->method('getEntity')
-            ->will($this->returnValue($userEntity));
+            ->willReturn($userEntity);
 
         $propertyObject = new Property($this->entityContainer, 'comment');
 
@@ -110,25 +110,25 @@ class FormHelperChoiceRadioTest extends \PHPUnit_Framework_TestCase
 
         $this->entityContainerMap->expects($this->any())
             ->method('count')
-            ->will($this->returnValue(1));
+            ->willReturn(1);
 
 
         $this->form->expects($this->any())
             ->method('getName')
-            ->will($this->returnValue('testform'));
+            ->willReturn('testform');
 
         $this->form->expects($this->any())
             ->method('getEntityContainerMap')
-            ->will($this->returnValue($this->entityContainerMap));
+            ->willReturn($this->entityContainerMap);
 
 
         $this->entityContainer->expects($this->any())
             ->method('getForm')
-            ->will($this->returnValue($this->form));
+            ->willReturn($this->form);
 
         $this->entityContainer->expects($this->any())
             ->method('getEntity')
-            ->will($this->returnValue($userEntity));
+            ->willReturn($userEntity);
 
         $propertyObject = new Property($this->entityContainer, 'comment');
 
@@ -150,29 +150,29 @@ class FormHelperChoiceRadioTest extends \PHPUnit_Framework_TestCase
 
         $this->entityContainerMap->expects($this->any())
             ->method('count')
-            ->will($this->returnValue(1));
+            ->willReturn(1);
 
 
         $this->formCollection->expects($this->any())
             ->method('getName')
-            ->will($this->returnValue('testform'));
+            ->willReturn('testform');
 
         $this->formCollection->expects($this->any())
             ->method('getEntityContainerMap')
-            ->will($this->returnValue($this->entityContainerMap));
+            ->willReturn($this->entityContainerMap);
 
 
         $this->entityContainer->expects($this->any())
             ->method('getForm')
-            ->will($this->returnValue($this->formCollection));
+            ->willReturn($this->formCollection);
 
         $this->entityContainer->expects($this->any())
             ->method('getName')
-            ->will($this->returnValue(0));
+            ->willReturn(0);
 
         $this->entityContainer->expects($this->any())
             ->method('getEntity')
-            ->will($this->returnValue($userEntity));
+            ->willReturn($userEntity);
 
         $propertyObject = new Property($this->entityContainer, 'comment');
 

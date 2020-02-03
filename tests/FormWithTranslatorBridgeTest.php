@@ -10,9 +10,8 @@
 namespace Naucon\Form\Tests;
 
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\Validator\Validation;
+use Symfony\Component\Translation\Formatter\MessageFormatter;
 use Symfony\Component\Translation\Translator as BaseTranslator;
-use Symfony\Component\Translation\MessageSelector;
 use Symfony\Component\Translation\Loader\XliffFileLoader;
 use Symfony\Component\Translation\Loader\YamlFileLoader;
 use Naucon\Form\Form;
@@ -109,13 +108,16 @@ class FormWithTranslatorBridgeTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider entityProvider
-     * @param    object     $entity             entity a plain old php object
-     * @param	 array		$config			    form configuration
-     * @param    array      $methods            array of getters for the entity
-     * @param    array      $dataMap            form data
-     * @param    bool       $expectedIsBound    expected form bind result
-     * @param    bool       $expectedIsValid    expected form validation result
-     * @param    array      $expectedErrors     expected form validation errors
+     *
+     * @param object $entity          entity a plain old php object
+     * @param array  $config          form configuration
+     * @param array  $methods         array of getters for the entity
+     * @param array  $dataMap         form data
+     * @param bool   $expectedIsBound expected form bind result
+     * @param bool   $expectedIsValid expected form validation result
+     * @param array  $expectedErrors  expected form validation errors
+     *
+     * @throws \ReflectionException
      */
     public function testFormBind($entity, $config, $methods, $dataMap, $expectedIsBound, $expectedIsValid, $expectedErrors)
     {
@@ -127,7 +129,7 @@ class FormWithTranslatorBridgeTest extends \PHPUnit_Framework_TestCase
 		$configPaths['en_EN'] = __DIR__ . '/Resources/translations/validators.en.yml';
 		$configPaths['de_DE'] = __DIR__ . '/Resources/translations/validators.de.yml';
 
-		$translator = new BaseTranslator('de_DE', new MessageSelector());
+		$translator = new BaseTranslator('de_DE', new MessageFormatter());
 		$translator->addLoader('xlf', new XliffFileLoader());
 		$translator->addLoader('yaml', new YamlFileLoader());
 

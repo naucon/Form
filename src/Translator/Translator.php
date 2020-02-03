@@ -9,8 +9,8 @@
  */
 namespace Naucon\Form\Translator;
 
+use Symfony\Component\Translation\Formatter\MessageFormatter;
 use Symfony\Component\Translation\Translator as BaseTranslator;
-use Symfony\Component\Translation\MessageSelector;
 use Symfony\Component\Translation\Loader\XliffFileLoader;
 use Symfony\Component\Translation\Loader\YamlFileLoader;
 use Symfony\Component\Finder\Finder;
@@ -28,11 +28,13 @@ class Translator extends TranslatorBridge
     /**
      * Constructor
      *
-     * @param   Configuration       $configuration      configuration
+     * @param Configuration $configuration configuration
+     *
+     * @throws \ReflectionException
      */
     public function __construct(Configuration $configuration)
     {
-        $handler = new BaseTranslator($configuration->get('locale'), new MessageSelector());
+        $handler = new BaseTranslator($configuration->get('locale'), new MessageFormatter());
         $handler->setFallbackLocales($configuration->get('fallback_locales'));
 
         $handler->addLoader('xlf', new XliffFileLoader());
@@ -44,12 +46,12 @@ class Translator extends TranslatorBridge
         $dirs = array();
         if (class_exists('Symfony\Component\Validator\Validation')) {
             $r = new \ReflectionClass('Symfony\Component\Validator\Validation');
-            $dirs[] = dirname($r->getFileName()).'/Resources/translations';
+            $dirs[] = dirname($r->getFileName()) . '/Resources/translations';
         }
 
 
         // add default translations
-        if (is_dir($dir = realpath(__DIR__ . '/../') . '/Resources/translations')) {
+        if (is_dir($dir = dirname(__DIR__) . '/' . '/Resources/translations')) {
             $dirs[] = $dir;
         }
 
@@ -81,7 +83,7 @@ class Translator extends TranslatorBridge
         ;
 
         foreach ($finder as $file) {
-            list($translationDomain, $locale, $extension) = $foo = explode('.', $file->getBasename(), 3);
+            [$translationDomain, $locale, $extension] = $foo = explode('.', $file->getBasename(), 3);
 
             $this->handler->addResource($extension, $file->getPathname(), $locale, $translationDomain);
         }

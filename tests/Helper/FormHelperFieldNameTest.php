@@ -14,6 +14,7 @@ use Naucon\Form\Helper\FormHelperFieldName;
 use Naucon\Form\Mapper\EntityContainerInterface;
 use Naucon\Form\Mapper\Property;
 use Naucon\Form\Tests\Entities\User;
+use Naucon\Utility\Map;
 
 /**
  * Class FormHelperFieldNameTest
@@ -52,26 +53,31 @@ class FormHelperFieldNameTest extends \PHPUnit_Framework_TestCase
         $userEntity = new User();
         $userEntity->setComment('foo');
 
-        $entityContainerMap = $this->getMock('Naucon\Utility\Map');
-        $entityContainerMap->expects($this->any())
+        $entityContainerMap = $this->getMockBuilder(Map::class)->getMock();
+        $entityContainerMap
+            ->expects($this->any())
             ->method('count')
-            ->will($this->returnValue(1));
+            ->willReturn(1);
 
-        $this->form->expects($this->any())
+        $this->form
+            ->expects($this->any())
             ->method('getName')
-            ->will($this->returnValue('testform'));
-        $this->form->expects($this->any())
+            ->willReturn('testform');
+        $this->form
+            ->expects($this->any())
             ->method('getEntityContainerMap')
-            ->will($this->returnValue($entityContainerMap));
+            ->willReturn($entityContainerMap);
 
 
-        $this->entityContainer->expects($this->any())
+        $this->entityContainer
+            ->expects($this->any())
             ->method('getForm')
-            ->will($this->returnValue($this->form));
+            ->willReturn($this->form);
 
-        $this->entityContainer->expects($this->any())
+        $this->entityContainer
+            ->expects($this->any())
             ->method('getEntity')
-            ->will($this->returnValue($userEntity));
+            ->willReturn($userEntity);
 
         $propertyObject = new Property($this->entityContainer, 'comment');
 

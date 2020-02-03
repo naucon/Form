@@ -23,8 +23,7 @@ class TranslatorBridge implements TranslatorInterface
     /**
      * @var     \Symfony\Component\Translation\TranslatorInterface       translator handler
      */
-    protected $handler = null;
-
+    protected $handler;
 
     /**
      * Constructor
@@ -35,8 +34,6 @@ class TranslatorBridge implements TranslatorInterface
     {
         $this->setHandler($handler);
     }
-
-
 
     /**
      * @return  \Symfony\Component\Translation\TranslatorInterface       translator handler

@@ -9,12 +9,12 @@
  */
 namespace Naucon\Form\Tests\Validator\Constraints;
 
-use Symfony\Component\Validator\Tests\Constraints\AbstractConstraintValidatorTest;
+use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
 use Naucon\Form\Validator\Constraints\IsRegexp;
 use Naucon\Form\Validator\Constraints\IsRegexpValidator;
 
-class IsRegexpValidatorTest extends AbstractConstraintValidatorTest
+class IsRegexpValidatorTest extends ConstraintValidatorTestCase
 {
     protected function createValidator()
     {

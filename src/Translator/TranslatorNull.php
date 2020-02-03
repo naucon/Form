@@ -9,7 +9,7 @@
  */
 namespace Naucon\Form\Translator;
 
-use Symfony\Component\Translation\IdentityTranslator as BaseIdentityTranslator;
+use Symfony\Component\Translation\IdentityTranslator;
 
 /**
  * Null Translator
@@ -19,6 +19,6 @@ use Symfony\Component\Translation\IdentityTranslator as BaseIdentityTranslator;
  * @subpackage  Translator
  * @author      Sven Sanzenbacher
  */
-class TranslatorNull extends BaseIdentityTranslator implements TranslatorInterface
+class TranslatorNull extends IdentityTranslator implements TranslatorInterface
 {
 }
