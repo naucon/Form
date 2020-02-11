@@ -23,8 +23,7 @@ class TranslatorBridge implements TranslatorInterface
     /**
      * @var     \Symfony\Component\Translation\TranslatorInterface       translator handler
      */
-    protected $handler = null;
-
+    protected $handler;
 
     /**
      * Constructor
@@ -35,8 +34,6 @@ class TranslatorBridge implements TranslatorInterface
     {
         $this->setHandler($handler);
     }
-
-
 
     /**
      * @return  \Symfony\Component\Translation\TranslatorInterface       translator handler
@@ -57,7 +54,7 @@ class TranslatorBridge implements TranslatorInterface
     /**
      * {@inheritdoc}
      */
-    public function trans($id, array $parameters=array(), $domain=null, $locale=null)
+    public function trans($id, array $parameters = [], $domain = null, $locale = null)
     {
         $tranlation = $this->getHandler()->trans($id, $parameters, $domain, $locale);
 
@@ -67,7 +64,7 @@ class TranslatorBridge implements TranslatorInterface
     /**
      * {@inheritdoc}
      */
-    public function transChoice($id, $number, array $parameters=array(), $domain=null, $locale=null)
+    public function transChoice($id, $number, array $parameters = [], $domain = null, $locale = null)
     {
         $tranlation = $this->getHandler()->transChoice($id, $number, $parameters, $domain, $locale);
 

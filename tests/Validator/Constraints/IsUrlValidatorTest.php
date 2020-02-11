@@ -9,12 +9,12 @@
  */
 namespace Naucon\Form\Tests\Validator\Constraints;
 
-use Symfony\Component\Validator\Tests\Constraints\AbstractConstraintValidatorTest;
+use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
 use Naucon\Form\Validator\Constraints\IsUrl;
 use Naucon\Form\Validator\Constraints\IsUrlValidator;
 
-class IsUrlValidatorTest extends AbstractConstraintValidatorTest
+class IsUrlValidatorTest extends ConstraintValidatorTestCase
 {
     protected function createValidator()
     {

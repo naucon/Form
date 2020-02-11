@@ -40,7 +40,7 @@ abstract class AbstractFormHelperOption implements FormHelperOptionInterface
     /**
      * @var    array
      */
-    protected $choices = array();
+    protected $choices = [];
 
 
     /**
@@ -73,7 +73,7 @@ abstract class AbstractFormHelperOption implements FormHelperOptionInterface
     /**
      * @param     array     $options        helper options
      */
-    public function setOptions(array $options=array())
+    public function setOptions(array $options = [])
     {
         $this->getOptions()->setAll($options);
     }
@@ -105,7 +105,7 @@ abstract class AbstractFormHelperOption implements FormHelperOptionInterface
     /**
      * @param     array         $choices
      */
-    public function setChoices(array $choices=array())
+    public function setChoices(array $choices = [])
     {
         $this->choices = $choices;
     }

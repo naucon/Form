@@ -52,7 +52,7 @@ class IsIbanValidator extends ConstraintValidator
                 throw new ConstraintDefinitionException('Given country code on IBAN contrain is empty');
             }
 
-            $countryCodes = array($constraint->countryCodes);
+            $countryCodes = [$constraint->countryCodes];
         }
 
         $type = new Iban($value);

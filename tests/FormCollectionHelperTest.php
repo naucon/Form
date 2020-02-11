@@ -16,13 +16,30 @@ use Naucon\Form\Tests\Entities\CreditCard;
 use Naucon\Form\Tests\Entities\DirectDebit;
 use Naucon\Form\Security\SynchronizerTokenBridge;
 use Symfony\Component\Security\Csrf\CsrfTokenManager;
+use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
+use Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface;
 
 class FormCollectionHelperTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var TokenGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject
+     */
+    private $generator;
+
+    /**
+     * @var CsrfTokenManager
+     */
+    private $manager;
+
+    /**
+     * @var TokenStorageInterface|\PHPUnit_Framework_MockObject_MockObject
+     */
+    private $storage;
+
     protected function setUp()
     {
-        $this->generator = $this->getMock('Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface');
-        $this->storage = $this->getMock('Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface');
+        $this->generator = $this->getMockBuilder(TokenGeneratorInterface::class)->getMock();
+        $this->storage = $this->getMockBuilder(TokenStorageInterface::class)->getMock();
         $this->manager = new CsrfTokenManager($this->generator, $this->storage);
     }
 
@@ -30,15 +47,17 @@ class FormCollectionHelperTest extends \PHPUnit_Framework_TestCase
     {
         $synchronizerToken = new SynchronizerTokenBridge($this->manager);
 
-        $this->storage->expects($this->any())
+        $this->storage
+            ->expects($this->any())
             ->method('hasToken')
             ->with('testforms')
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
-        $this->storage->expects($this->any())
+        $this->storage
+            ->expects($this->any())
             ->method('getToken')
             ->with('testforms')
-            ->will($this->returnValue('TOKEN'));
+            ->willReturn('TOKEN');
 
         $creditCardEntity = new CreditCard();
         $directDebitEntity = new DirectDebit();
@@ -78,15 +97,17 @@ class FormCollectionHelperTest extends \PHPUnit_Framework_TestCase
     {
         $synchronizerToken = new SynchronizerTokenBridge($this->manager);
 
-        $this->storage->expects($this->any())
+        $this->storage
+            ->expects($this->any())
             ->method('hasToken')
             ->with('testforms')
-            ->will($this->returnValue(true));
+            ->willReturn(true);
 
-        $this->storage->expects($this->any())
+        $this->storage
+            ->expects($this->any())
             ->method('getToken')
             ->with('testforms')
-            ->will($this->returnValue('TOKEN'));
+            ->willReturn('TOKEN');
 
         $creditCardEntity = new CreditCard();
         $directDebitEntity = new DirectDebit();

@@ -30,7 +30,7 @@ function smarty_function_ncform_field($params, $smarty)
     if ($formHelper instanceof FormHelper) {
         $fieldName = null;
         $fieldType = null;
-        $options = array();
+        $options = [];
 
         foreach ($params as $_key => $_val) {
             switch ($_key) {

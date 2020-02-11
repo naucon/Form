@@ -31,7 +31,7 @@ function smarty_function_ncform_choice($params, $smarty)
         $fieldName = null;
         $fieldType = null;
         $fieldValue = null;
-        $options = array();
+        $options = [];
 
         foreach ($params as $_key => $_val) {
             switch ($_key) {

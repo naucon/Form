@@ -33,7 +33,7 @@ function smarty_block_ncform($params, $content, $smarty, $_block_repeat)
     $method = 'post';
     $action = null;
     $enctype = null;
-    $options = array();
+    $options = [];
 
     foreach ($params as $_key => $_val) {
         switch ($_key) {

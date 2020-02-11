@@ -13,6 +13,7 @@ use Naucon\Form\FormCollectionInterface;
 use Naucon\Form\FormInterface;
 use Naucon\Form\Helper\Exception\InvalidArgumentException;
 use Naucon\Form\Mapper\Property;
+use Naucon\Utility\Exception\MapException;
 use Naucon\Utility\Map;
 
 /**
@@ -27,9 +28,7 @@ class FormHelperMap
     /**
      * @var     Map
      */
-    protected $helperMap = null;
-
-
+    protected $helperMap;
 
     /**
      * Constructor
@@ -38,7 +37,6 @@ class FormHelperMap
     {
         $this->attachDefaultHelper();
     }
-
 
     /**
      * attach default form helper
@@ -67,14 +65,16 @@ class FormHelperMap
     /**
      * load and render form help field
      *
-     * @param     Property      $property       property instance
-     * @param     string            $helperName     form helper name
-     * @param     array             $options        form helper options
+     * @param Property $property   property instance
+     * @param string   $helperName form helper name
+     * @param array    $options    form helper options
+     *
      * @return    string        rendered html
      *
      * @throws  InvalidArgumentException
+     * @throws MapException
      */
-    public function loadField(Property $property, $helperName, array $options=array())
+    public function loadField(Property $property, $helperName, array $options = [])
     {
         if ($this->getHelper('field')->hasKey($helperName)) {
             /**
@@ -84,24 +84,27 @@ class FormHelperMap
             $tmpFormHelper = clone $formHelper;
             $tmpFormHelper->setProperty($property);
             $tmpFormHelper->setOptions($options);
+
             return $tmpFormHelper->render();
-        } else {
-            throw new InvalidArgumentException('unkown form helper ' . $helperName);
         }
+
+        throw new InvalidArgumentException('unkown form helper ' . $helperName);
     }
 
     /**
      * load and render form help choice
      *
-     * @param     Property      $property           property instance
-     * @param     string            $helperName         form helper choice name
-     * @param     mixed             $choiceValue        form helper choice value or values
-     * @param     array             $options            form helper options
+     * @param Property $property    property instance
+     * @param string   $helperName  form helper choice name
+     * @param mixed    $choiceValue form helper choice value or values
+     * @param array    $options     form helper options
+     *
      * @return    string        rendered html
      *
-     * @throws  InvalidArgumentException
+     * @throws InvalidArgumentException
+     * @throws MapException
      */
-    public function loadChoice(Property $property, $helperName, $choiceValue, array $options=array())
+    public function loadChoice(Property $property, $helperName, $choiceValue, array $options = [])
     {
         if ($this->getHelper('choice')->hasKey($helperName)) {
             /**
@@ -116,24 +119,27 @@ class FormHelperMap
                 $tmpFormHelper->setChoice($choiceValue);
             }
             $tmpFormHelper->setOptions($options);
+
             return $tmpFormHelper->render();
-        } else {
-            throw new InvalidArgumentException('unkown form helper ' . $helperName);
         }
+
+        throw new InvalidArgumentException('unkown form helper ' . $helperName);
     }
 
     /**
      * load and render form help tag
      *
-     * @param     FormInterface     $form           form instance
-     * @param     string            $helperName     form helper name
-     * @param     string            $content        form helper content
-     * @param     array             $options        form helper options
+     * @param FormInterface $form       form instance
+     * @param string        $helperName form helper name
+     * @param string        $content    form helper content
+     * @param array         $options    form helper options
+     *
      * @return    string        rendered html
      *
      * @throws  InvalidArgumentException
+     * @throws MapException
      */
-    public function loadTag(FormInterface $form, $helperName, $content=null, array $options=array())
+    public function loadTag(FormInterface $form, $helperName, $content=null, array $options = [])
     {
         if ($this->getHelper('tag')->hasKey($helperName)) {
             /**
@@ -144,24 +150,27 @@ class FormHelperMap
             $tmpFormHelper->setForm($form);
             $tmpFormHelper->setContent($content);
             $tmpFormHelper->setOptions($options);
+
             return $tmpFormHelper->render();
-        } else {
-            throw new InvalidArgumentException('unkown form helper ' . $helperName);
         }
+
+        throw new InvalidArgumentException('unkown form helper ' . $helperName);
     }
 
     /**
      * load and render form help option
      *
-     * @param     FormInterface     $form               form collection instance
-     * @param     string            $helperName         form helper name
-     * @param     string            $optionValue        form helper option value or values
-     * @param     array             $options            form helper options
+     * @param FormInterface $form        form collection instance
+     * @param string        $helperName  form helper name
+     * @param string        $optionValue form helper option value or values
+     * @param array         $options     form helper options
+     *
      * @return    string        rendered html
      *
      * @throws  InvalidArgumentException
+     * @throws MapException
      */
-    public function loadOption(FormInterface $form, $helperName, $optionValue, array $options=array())
+    public function loadOption(FormInterface $form, $helperName, $optionValue, array $options = [])
     {
         if (!$form instanceof FormCollectionInterface) {
             throw new InvalidArgumentException(
@@ -184,10 +193,11 @@ class FormHelperMap
                 $tmpFormHelper->setChoice($optionValue);
             }
             $tmpFormHelper->setOptions($options);
+
             return $tmpFormHelper->render();
-        } else {
-            throw new InvalidArgumentException('unkown form helper ' . $helperName);
         }
+
+        throw new InvalidArgumentException('unkown form helper ' . $helperName);
     }
 
 
@@ -196,7 +206,7 @@ class FormHelperMap
      */
     protected function getHelperMap()
     {
-        if (is_null($this->helperMap)) {
+        if ($this->helperMap === null) {
             $this->helperMap = new Map();
         }
         return $this->helperMap;
@@ -223,27 +233,31 @@ class FormHelperMap
     /**
      * return registered form helper
      *
-     * @param       string      $helperType         helper type eg. tag, option, field, choise
+     * @param string $helperType helper type eg. tag, option, field, choise
+     *
      * @return      Map
      *
      * @throws InvalidArgumentException
+     * @throws MapException
      */
     public function getHelper($helperType)
     {
         if ($this->isValidKey($helperType)) {
             return $this->getHelperMap()->get($helperType);
-        } else {
-            throw new InvalidArgumentException('Invalid form helper type given');
         }
+
+        throw new InvalidArgumentException('Invalid form helper type given');
     }
 
     /**
      * return count of registered form helper
      *
-     * @param       string      $helperType         helper type eg. tag, option, field, choise
+     * @param string $helperType helper type eg. tag, option, field, choise
+     *
      * @return      int
      *
-     * @throws  InvalidArgumentException
+     * @throws InvalidArgumentException
+     * @throws MapException
      */
     public function getHelperCount($helperType)
     {
@@ -252,18 +266,20 @@ class FormHelperMap
                 return count($formHelperMap);
             }
             return 0;
-        } else {
-            throw new InvalidArgumentException('Invalid form helper type given');
         }
+
+        throw new InvalidArgumentException('Invalid form helper type given');
     }
 
     /**
      * return if helper are registered
      *
-     * @param       string      $helperType         helper type eg. tag, option, field, choise
+     * @param string $helperType helper type eg. tag, option, field, choise
+     *
      * @return      bool
      *
      * @throws  InvalidArgumentException
+     * @throws MapException
      */
     public function hasHelper($helperType)
     {
@@ -276,6 +292,7 @@ class FormHelperMap
         } else {
             throw new InvalidArgumentException('Invalid form helper type given');
         }
+
         return false;
     }
 
@@ -285,9 +302,7 @@ class FormHelperMap
      */
     protected function isValidKey($key)
     {
-        if (is_scalar($key)
-            && strlen($key) > 0
-        ) {
+        if (is_scalar($key) && $key !== '') {
             return true;
         }
         return false;
@@ -318,16 +333,18 @@ class FormHelperMap
     /**
      * add form helper
      *
-     * @param       string                  $helperName         form helper name
-     * @param       FormHelperInterface     $formHelper         form helper instance
+     * @param string              $helperName form helper name
+     * @param FormHelperInterface $formHelper form helper instance
+     *
      * @return      FormHelperMap       form helper map for fluent interface
      *
      * @throws InvalidArgumentException
+     * @throws MapException
      */
     public function attachHelper($helperName, FormHelperInterface $formHelper)
     {
         if ($this->isValidKey($helperName)) {
-            if (is_null($formHelperType = $this->resolveHelperType($formHelper))) {
+            if (($formHelperType = $this->resolveHelperType($formHelper)) === null) {
                 throw new InvalidArgumentException('Unkown form helper instance given');
             }
 
@@ -347,16 +364,18 @@ class FormHelperMap
     /**
      * remove form helper
      *
-     * @param       string                  $helperName     form helper name
-     * @param       FormHelperInterface     $helper         form helper instance
+     * @param string              $helperName form helper name
+     * @param FormHelperInterface $helper     form helper instance
+     *
      * @return      FormHelperMap       form helper map for fluent interface
      *
      * @throws      InvalidArgumentException
+     * @throws MapException
      */
     public function detachHelper($helperName, FormHelperInterface $helper)
     {
         if ($this->isValidKey($helperName)) {
-            if (is_null($formHelperType = $this->resolveHelperType($helper))) {
+            if (($formHelperType = $this->resolveHelperType($helper)) === null) {
                 throw new InvalidArgumentException('Unkown form helper instance given');
             }
 
@@ -366,6 +385,7 @@ class FormHelperMap
         } else {
             throw new InvalidArgumentException('Not able to detach helper because invalid helper name given');
         }
+
         return $this;
     }
 }

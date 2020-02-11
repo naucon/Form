@@ -20,150 +20,150 @@ class PropertyMapperTest extends \PHPUnit_Framework_TestCase
 {
     public function entityProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 new User(),
-                array(
+                [
                     'username' => 'getUsername',
                     'firstname' => 'getFirstname',
                     'lastname' => 'getLastname',
                     'email' => 'getEmail',
                     'age' => 'getAge'
-                ),
-                array(
+                ],
+                [
                     'username' => 'setUsername',
                     'firstname' => 'setFirstname',
                     'lastname' => 'setLastname',
                     'email' => 'setEmail',
                     'age' => 'setAge'
-                ),
-                array(
+                ],
+                [
                     'username' => 'max.mustermann',
                     'firstname' => 'Max',
                     'lastname' => 'Mustermann',
                     'email' => 'max.mustermann@yourdomain.com',
                     'age' => '18'
-                ),
+                ],
                 'valid dataset of user data'
-            ),
-            array(
+            ],
+            [
                 new User(),
-                array(
+                [
                     'username' => 'getUsername',
                     'firstname' => 'getFirstname',
                     'lastname' => 'getLastname',
                     'email' => 'getEmail',
                     'age' => 'getAge'
-                ),
-                array(
+                ],
+                [
                     'username' => 'setUsername',
                     'firstname' => 'setFirstname',
                     'lastname' => 'setLastname',
                     'email' => 'setEmail',
                     'age' => 'setAge'
-                ),
-                array(
+                ],
+                [
                     'username' => 'max.mustermann',
                     'firstname' => 'Max',
                     'lastname' => 'Mustermann',
                     'email' => 'max.mustermann@yourdomain.com',
                     'age' => '18',
                     'unkown' => 'any'
-                ),
+                ],
                 'valid dataset of user data with more form data as in entity'
-            ),
-            array(
+            ],
+            [
                 new Address(),
-                array(
+                [
                     'street_name' => 'getStreetName',
                     'street_number' => 'getStreetNumber',
                     'postal_code' => 'getPostalCode',
                     'town' => 'getTown',
                     'country' => 'getCountry'
-                ),
-                array(
+                ],
+                [
                     'street_name' => 'setStreetName',
                     'street_number' => 'setStreetNumber',
                     'postal_code' => 'setPostalCode',
                     'town' => 'setTown',
                     'country' => 'setCountry'
-                ),
-                array(
+                ],
+                [
                     'street_name' => 'Any-Street',
                     'street_number' => '1',
                     'postal_code' => '12345',
                     'town' => 'Anywhere',
                     'country' => 'Anyland'
-                ),
+                ],
                 'valid dataset of address data'
-            ),
-            array(
+            ],
+            [
                 new Product(),
-                array(
+                [
                     'product_id' => 'getProductId',
                     'product_number' => 'getProductNumber',
                     'product_desc' => 'getProductDesc',
                     'price' => 'getPrice'
-                ),
-                array(
+                ],
+                [
                     'product_id' => 'setProductId',
                     'product_number' => 'setProductNumber',
                     'product_desc' => 'setProductDesc',
                     'price' => 'setPrice'
-                ),
-                array(
+                ],
+                [
                     'product_id' => null,
                     'product_number' => 'V001',
                     'product_desc' => 'Apple',
                     'price' => '9.91'
-                ),
+                ],
                 'valid dataset of product data'
-            ),
-            array(
+            ],
+            [
                 new CreditCard(),
-                array(
+                [
                     'card_brand' => 'getCardBrand',
                     'card_holder_name' => 'getCardHolderName',
                     'card_number' => 'getCardNumber',
                     'expiration_date' => 'getExpirationDate'
-                ),
-                array(
+                ],
+                [
                     'card_brand' => 'setCardBrand',
                     'card_holder_name' => 'setCardHolderName',
                     'card_number' => 'setCardNumber',
                     'expiration_date' => 'setExpirationDate'
-                ),
-                array(
+                ],
+                [
                     'card_brand' => 'VISA',
                     'card_holder_name' => 'Max Mustermann',
                     'card_number' => '4111111111111111',
                     'expiration_date' => '12-2015'
-                ),
+                ],
                 'valid dataset of credit card data'
-            ),
-            array(
+            ],
+            [
                 new DirectDebit(),
-                array(
+                [
                     'account_holder_name' => 'getAccountHolderName',
                     'iban' => 'getIban',
                     'bic' => 'getBic',
                     'bank' => 'getBank'
-                ),
-                array(
+                ],
+                [
                     'account_holder_name' => 'setAccountHolderName',
                     'iban' => 'setIban',
                     'bic' => 'setBic',
                     'bank' => 'setBank'
-                ),
-                array(
+                ],
+                [
                     'account_holder_name' => 'Max Mustermann',
                     'iban' => 'DE00210501700012345678',
                     'bic' => 'MARKDEFF',
                     'bank' => 'Bundesbank'
-                ),
+                ],
                 'valid dataset of debit direct data'
-            )
-        );
+            ]
+        ];
     }
 
     /**
@@ -191,14 +191,14 @@ class PropertyMapperTest extends \PHPUnit_Framework_TestCase
     {
         $entity = new User();
 
-        $dataMap = array(
+        $dataMap = [
             'username' => 'max.mustermann',
             'firstname' => 'Max',
             'lastname' => 'Mustermann',
             'email' => 'max.mustermann@yourdomain.com',
             'age' => '18',
             'secret' => 'hack'
-        );
+        ];
 
         $propertyMapper = new PropertyMapper();
         $propertyMapper->mapFormToData($entity, $dataMap);

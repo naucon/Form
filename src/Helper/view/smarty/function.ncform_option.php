@@ -30,7 +30,7 @@ function smarty_function_ncform_option($params, $smarty)
     if ($formHelper instanceof FormHelper) {
         $tagType = null;
         $tagValue = null;
-        $options = array();
+        $options = [];
 
         foreach ($params as $_key => $_val) {
             switch ($_key) {
