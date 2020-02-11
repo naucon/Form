@@ -9,8 +9,7 @@
  */
 namespace Naucon\Form\Translator;
 
-use Symfony\Component\Translation\TranslatorInterface as LegacyTranslatorInterface;
-use Symfony\Contracts\Translation\TranslatorInterface as BaseTranslatorInterface;
+use Symfony\Component\Translation\TranslatorInterface as BaseTranslatorInterface;
 
 /**
  * Translator Interface
@@ -19,7 +18,7 @@ use Symfony\Contracts\Translation\TranslatorInterface as BaseTranslatorInterface
  * @subpackage  Translator
  * @author      Sven Sanzenbacher
  */
-interface TranslatorInterface extends LegacyTranslatorInterface, BaseTranslatorInterface
+interface TranslatorInterface extends BaseTranslatorInterface
 {
 
 }
