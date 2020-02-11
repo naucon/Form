@@ -24,86 +24,86 @@ class FormWithTranslatorBridgeTest extends \PHPUnit_Framework_TestCase
 {
     public function entityProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 new User(),
-                array('locale' => 'de_DE'),
-                array(
+                ['locale' => 'de_DE'],
+                [
                     'username' => 'getUsername',
                     'firstname' => 'getFirstname',
                     'lastname' => 'getLastname',
                     'email' => 'getEmail',
                     'age' => 'getAge'
-                ),
-                array(
+                ],
+                [
                     'username' => 'max.mustermann',
                     'firstname' => 'Max',
                     'lastname' => 'Mustermann',
                     'email' => 'max.mustermann@yourdomain.com',
                     'age' => '18'
-                ),
+                ],
                 true,
                 true,
-                array(),
+                [],
                 'valid dataset user form'
-            ),
-            array(
+            ],
+            [
                 new User(),
-                array('locale' => 'de_DE'),
-                array(
+                ['locale' => 'de_DE'],
+                [
                     'username' => 'getUsername',
                     'firstname' => 'getFirstname',
                     'lastname' => 'getLastname',
                     'email' => 'getEmail',
                     'age' => 'getAge'
-                ),
-                array(
+                ],
+                [
                     'username' => '',
                     'firstname' => 'Max',
                     'lastname' => 'Mustermann',
                     'email' => 'max.mustermann@yourdomain.com',
                     'age' => 'monday'
-                ),
+                ],
                 true,
                 false,
-                array('username' => 'Dieser Wert sollte nicht leer sein.', 'age' => 'Dieser Wert sollte vom Typ numeric sein.'),
+                ['username' => 'Dieser Wert sollte nicht leer sein.', 'age' => 'Dieser Wert sollte vom Typ numeric sein.'],
                 'invalid dataset user form with missing username and wrong age type'
-            ),
-            array(
+            ],
+            [
                 new User(),
-                array('locale' => 'de_DE'),
-                array(
+                ['locale' => 'de_DE'],
+                [
                     'username' => 'getUsername',
                     'firstname' => 'getFirstname',
                     'lastname' => 'getLastname',
                     'email' => 'getEmail',
                     'age' => 'getAge'
-                ),
-                array(
+                ],
+                [
                     'email' => 'max.mustermann@yourdomain.com',
-                ),
+                ],
                 true,
                 false,
-                array('username' => 'Dieser Wert sollte nicht leer sein.'),
+                ['username' => 'Dieser Wert sollte nicht leer sein.'],
                 'invalid dataset user form with missing username'
-            ),
-            array(
+            ],
+            [
                 new User(),
-                array('locale' => 'de_DE'),
-                array(
+                ['locale' => 'de_DE'],
+                [
                     'username' => 'getUsername',
                     'firstname' => 'getFirstname',
                     'lastname' => 'getLastname',
                     'email' => 'getEmail',
                     'age' => 'getAge'
-                ),
-                array(),
+                ],
+                [],
                 false,
                 false,
-                array('username' => 'Dieser Wert sollte nicht leer sein.'),
+                ['username' => 'Dieser Wert sollte nicht leer sein.'],
                 'invalid dataset user form with missing form data'
-            )
-        );
+            ]
+        ];
     }
 
     /**
@@ -125,7 +125,7 @@ class FormWithTranslatorBridgeTest extends \PHPUnit_Framework_TestCase
             $this->assertEquals('', $entity->$method());
         }
 
-		$configPaths = array();
+		$configPaths = [];
 		$configPaths['en_EN'] = __DIR__ . '/Resources/translations/validators.en.yml';
 		$configPaths['de_DE'] = __DIR__ . '/Resources/translations/validators.de.yml';
 
@@ -134,7 +134,7 @@ class FormWithTranslatorBridgeTest extends \PHPUnit_Framework_TestCase
 		$translator->addLoader('yaml', new YamlFileLoader());
 
         // add default translations from symfony validation component
-        $dirs = array();
+        $dirs = [];
         if (class_exists('Symfony\Component\Validator\Validation')) {
             $r = new \ReflectionClass('Symfony\Component\Validator\Validation');
             $dirs[] = dirname($r->getFileName()).'/Resources/translations';
@@ -169,7 +169,7 @@ class FormWithTranslatorBridgeTest extends \PHPUnit_Framework_TestCase
         $form->setValidator($validatorBridge);
         $form->setTranslator($translatorBridge);
 
-        $payload = array();
+        $payload = [];
         $payload['_csrf_token'] = $form->getSynchronizerToken();
         if (count($dataMap)) {
             $payload['testform'] = $dataMap;

@@ -67,14 +67,16 @@ class FormHelperMap
     /**
      * load and render form help field
      *
-     * @param     Property      $property       property instance
-     * @param     string            $helperName     form helper name
-     * @param     array             $options        form helper options
+     * @param Property $property   property instance
+     * @param string   $helperName form helper name
+     * @param array    $options    form helper options
+     *
      * @return    string        rendered html
      *
      * @throws  InvalidArgumentException
+     * @throws \Naucon\Utility\Exception\MapException
      */
-    public function loadField(Property $property, $helperName, array $options=array())
+    public function loadField(Property $property, $helperName, array $options = [])
     {
         if ($this->getHelper('field')->hasKey($helperName)) {
             /**
@@ -101,7 +103,7 @@ class FormHelperMap
      *
      * @throws  InvalidArgumentException
      */
-    public function loadChoice(Property $property, $helperName, $choiceValue, array $options=array())
+    public function loadChoice(Property $property, $helperName, $choiceValue, array $options = [])
     {
         if ($this->getHelper('choice')->hasKey($helperName)) {
             /**
@@ -133,7 +135,7 @@ class FormHelperMap
      *
      * @throws  InvalidArgumentException
      */
-    public function loadTag(FormInterface $form, $helperName, $content=null, array $options=array())
+    public function loadTag(FormInterface $form, $helperName, $content=null, array $options = [])
     {
         if ($this->getHelper('tag')->hasKey($helperName)) {
             /**
@@ -161,7 +163,7 @@ class FormHelperMap
      *
      * @throws  InvalidArgumentException
      */
-    public function loadOption(FormInterface $form, $helperName, $optionValue, array $options=array())
+    public function loadOption(FormInterface $form, $helperName, $optionValue, array $options = [])
     {
         if (!$form instanceof FormCollectionInterface) {
             throw new InvalidArgumentException(

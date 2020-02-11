@@ -43,7 +43,7 @@ class Translator extends TranslatorBridge
         parent::__construct($handler);
 
         // add default translations from symfony validation component
-        $dirs = array();
+        $dirs = [];
         if (class_exists('Symfony\Component\Validator\Validation')) {
             $r = new \ReflectionClass('Symfony\Component\Validator\Validation');
             $dirs[] = dirname($r->getFileName()) . '/Resources/translations';

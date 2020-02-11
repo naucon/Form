@@ -30,7 +30,7 @@ class FormCollection extends FormAbstract implements FormCollectionInterface
     /**
      * @var   array
      */
-    protected $_formOptionValues = array();
+    protected $_formOptionValues = [];
 
     /**
      * @var   array
@@ -125,7 +125,7 @@ class FormCollection extends FormAbstract implements FormCollectionInterface
         switch ($this->configuration->get('collection_type')) {
             case self::COLLECTION_TYPE_ONE:
             case self::COLLECTION_TYPE_MANY:
-                $formOptions = array();
+                $formOptions = [];
                 if (!is_null($payload)
                     && isset($payload[$this->getName()])
                 ) {
@@ -133,11 +133,20 @@ class FormCollection extends FormAbstract implements FormCollectionInterface
                         if (is_array($payload[$this->getName()][$this->getFormOptionKey()])) {
                             $formOptions = $payload[$this->getName()][$this->getFormOptionKey()];
                         } else {
-                            $formOptions = array($payload[$this->getName()][$this->getFormOptionKey()]);
+                            $formOptions = [$payload[$this->getName()][$this->getFormOptionKey()]];
                         }
-                        $this->logger->debug('form with option "{value}"', array('name' => $this->getName(), 'value' => $payload[$this->getName()][$this->getFormOptionKey()]));
+                        $this->logger->debug(
+                            'form with option "{value}"',
+                            [
+                                'name' => $this->getName(),
+                                'value' => $payload[$this->getName()][$this->getFormOptionKey()]
+                            ]
+                        );
                     } else {
-                        $this->logger->debug('missing form option', array('name' => $this->getName(), 'payload' => $payload));
+                        $this->logger->debug(
+                            'missing form option',
+                            ['name' => $this->getName(), 'payload' => $payload]
+                        );
                         // TODO set error
                     }
                 }
@@ -156,13 +165,16 @@ class FormCollection extends FormAbstract implements FormCollectionInterface
     public function bind(array $payload=null)
     {
         $bound = false;
-        $this->_boundEntities = array();
+        $this->_boundEntities = [];
 
         if (!is_null($payload)
             && isset($payload[$this->getName()])
             && $this->validateSynchronizerToken($payload)
         ) {
-            $this->logger->debug('start binding form', array('name' => $this->getName(), 'payload' => $payload));
+            $this->logger->debug(
+                'start binding form',
+                ['name' => $this->getName(), 'payload' => $payload]
+            );
 
             $propertyMapper = new PropertyMapper();
 
@@ -186,7 +198,13 @@ class FormCollection extends FormAbstract implements FormCollectionInterface
                             $this->addBoundEntity($entityContainer->getEntity());
 
                             // postbind hook
-                            $this->logger->debug('invoke form postbind hook', array('name' => $this->getName(), 'entity' => $entityContainer->getName()));
+                            $this->logger->debug(
+                                'invoke form postbind hook',
+                                [
+                                    'name' => $this->getName(),
+                                    'entity' => $entityContainer->getName()
+                                ]
+                            );
                             $entityContainer->invokeHook('postbindHook');
 
                         }
@@ -224,13 +242,13 @@ class FormCollection extends FormAbstract implements FormCollectionInterface
 
         $this->setBound($bound);
 
-        $this->logger->debug('execute post binding form', array('name' => $this->getName()));
+        $this->logger->debug('execute post binding form', ['name' => $this->getName()]);
         $this->postBind();
 
         if ($this->isBound()) {
-            $this->logger->debug('finished binding form successful', array('name' => $this->getName()));
+            $this->logger->debug('finished binding form successful', ['name' => $this->getName()]);
         } else {
-            $this->logger->debug('finished binding form failed', array('name' => $this->getName()));
+            $this->logger->debug('finished binding form failed', ['name' => $this->getName()]);
         }
         return $this->isBound();
     }
@@ -290,7 +308,7 @@ class FormCollection extends FormAbstract implements FormCollectionInterface
      */
     public function getErrors()
     {
-        $errors = array();
+        $errors = [];
 
         $entityContainers = $this->getEntityContainerMap()->getAll();
 

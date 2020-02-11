@@ -169,6 +169,6 @@ class Property
         }
         $id .= '.' . $this->getName();
 
-        return $translator->trans($id, array(), $translationDomain);
+        return $translator->trans($id, [], $translationDomain);
     }
 }

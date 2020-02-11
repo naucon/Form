@@ -52,7 +52,7 @@ class Form extends FormAbstract
      */
     public function getErrors()
     {
-        $errors = array();
+        $errors = [];
 
         /**
          * @var EntityContainerInterface $entityContainer

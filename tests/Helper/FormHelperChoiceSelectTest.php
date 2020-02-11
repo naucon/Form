@@ -63,7 +63,7 @@ class FormHelperChoiceSelectTest extends \PHPUnit_Framework_TestCase
 
         $formHelper = new FormHelperChoiceSelect();
         $formHelper->setProperty($propertyObject);
-        $formHelper->setChoices(array('bar' => 'Bar', 'foo' => 'Foo'));
+        $formHelper->setChoices(['bar' => 'Bar', 'foo' => 'Foo']);
         $formHelper->render();
 
         $expectedString = '<select name="testform[comment]" id="testform_comment">';
@@ -122,7 +122,7 @@ class FormHelperChoiceSelectTest extends \PHPUnit_Framework_TestCase
 
         $formHelper = new FormHelperChoiceSelect();
         $formHelper->setProperty($propertyObject);
-        $formHelper->setChoices(array('bar' => 'Bar', 'foo' => 'Foo'));
+        $formHelper->setChoices(['bar' => 'Bar', 'foo' => 'Foo']);
         $formHelper->render();
 
         $expectedString = '<select name="testform[0][comment]" id="testform_0_comment">';

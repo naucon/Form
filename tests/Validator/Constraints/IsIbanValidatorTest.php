@@ -23,19 +23,19 @@ class IsIbanValidatorTest extends ConstraintValidatorTestCase
 
     public function valueProvider()
     {
-        return array(
-            array('DE68 2105 0170 0012 3456 78', null, true),
-            array('CH10 0023 00A1 0235 0260 1', null, true),
-            array('CH00 0023 00A1 0235 0260 1', null, false),
-            array('DE68 2105 0170 0012 3456 78', 'DE', true),
-            array('CH10 0023 00A1 0235 0260 1', 'DE', false),
-            array('DE68 2105 0170 0012 3456 78', 'CH', false),
-            array('CH10 0023 00A1 0235 0260 1', 'CH', true),
-            array('DE68 2105 0170 0012 3456 78', array('DE', 'FR'), true),
-            array('CH10 0023 00A1 0235 0260 1', array('DE', 'FR'), false),
-            array('DE68 2105 0170 0012 3456 78', array('CH', 'FR'), false),
-            array('CH10 0023 00A1 0235 0260 1', array('CH', 'FR'), true),
-        );
+        return [
+            ['DE68 2105 0170 0012 3456 78', null, true],
+            ['CH10 0023 00A1 0235 0260 1', null, true],
+            ['CH00 0023 00A1 0235 0260 1', null, false],
+            ['DE68 2105 0170 0012 3456 78', 'DE', true],
+            ['CH10 0023 00A1 0235 0260 1', 'DE', false],
+            ['DE68 2105 0170 0012 3456 78', 'CH', false],
+            ['CH10 0023 00A1 0235 0260 1', 'CH', true],
+            ['DE68 2105 0170 0012 3456 78', ['DE', 'FR'], true],
+            ['CH10 0023 00A1 0235 0260 1', ['DE', 'FR'], false],
+            ['DE68 2105 0170 0012 3456 78', ['CH', 'FR'], false],
+            ['CH10 0023 00A1 0235 0260 1', ['CH', 'FR'], true],
+        ];
     }
 
     /**

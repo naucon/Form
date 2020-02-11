@@ -33,7 +33,7 @@ class FormHelperFieldLabel extends AbstractFormHelperField
             if (!$htmlElement->hasAttribute($key)) {
                 if ($key == 'value') {
                     $htmlElement->setContent($value);
-                } elseif (!in_array($key, array('domain'))) {
+                } elseif ($key != 'domain') {
                     $htmlElement->setAttribute($key, $value);
                 }
             }

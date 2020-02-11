@@ -93,7 +93,8 @@ class FormHelperChoiceCheckboxTest extends \PHPUnit_Framework_TestCase
             ->method('getName')
             ->willReturn(0);
 
-        $entityContainer->expects($this->any())
+        $entityContainer
+            ->expects($this->any())
             ->method('getEntity')
             ->willReturn($userEntity);
 

@@ -276,13 +276,16 @@ abstract class FormAbstract implements FormInterface
     public function bind(array $payload=null)
     {
         $bound = false;
-        $this->_boundEntities = array();
+        $this->_boundEntities = [];
 
         if (!is_null($payload)
             && isset($payload[$this->getName()])
             && $this->validateSynchronizerToken($payload)
         ) {
-            $this->logger->debug('start binding form', array('name' => $this->getName(), 'payload' => $payload));
+            $this->logger->debug(
+                'start binding form',
+                ['name' => $this->getName(), 'payload' => $payload]
+            );
 
             $propertyMapper = new PropertyMapper();
 
@@ -295,7 +298,10 @@ abstract class FormAbstract implements FormInterface
                     $this->addBoundEntity($entityContainer->getEntity());
 
                     // postbind hook
-                    $this->logger->debug('invoke form postbind hook', array('name' => $this->getName(), 'entity' => $entityContainer->getName()));
+                    $this->logger->debug(
+                        'invoke form postbind hook',
+                        ['name' => $this->getName(), 'entity' => $entityContainer->getName()]
+                    );
                     $entityContainer->invokeHook('postbindHook');
 
                     $bound = true;
@@ -306,13 +312,13 @@ abstract class FormAbstract implements FormInterface
 
         $this->setBound($bound);
 
-        $this->logger->debug('execute post binding form', array('name' => $this->getName()));
+        $this->logger->debug('execute post binding form', ['name' => $this->getName()]);
         $this->postBind();
 
         if ($this->isBound()) {
-            $this->logger->debug('finished binding form successful', array('name' => $this->getName()));
+            $this->logger->debug('finished binding form successful', ['name' => $this->getName()]);
         } else {
-            $this->logger->debug('finished binding form failed', array('name' => $this->getName()));
+            $this->logger->debug('finished binding form failed', ['name' => $this->getName()]);
         }
         return $this->isBound();
     }
@@ -341,22 +347,44 @@ abstract class FormAbstract implements FormInterface
         if ($this->configuration->get('csrf_protection')) {
             if (!is_null($payload) && isset($payload[$this->configuration->get('csrf_parameter')])) {
 
-                $this->logger->debug('validate synchronizer token', array('name' => $this->getName(), 'token' => $payload[$this->configuration->get('csrf_parameter')]));
+                $this->logger->debug(
+                    'validate synchronizer token',
+                    [
+                        'name' => $this->getName(),
+                        'token' => $payload[$this->configuration->get('csrf_parameter')]
+                    ]
+                );
                 $token = $payload[$this->configuration->get('csrf_parameter')];
 
                 if ($this->synchronizerToken->validate($this->getName(), $token)) {
-                    $this->logger->debug('valid synchronizer token given', array('name' => $this->getName(), 'token' => $payload[$this->configuration->get('csrf_parameter')]));
+                    $this->logger->debug(
+                        'valid synchronizer token given',
+                        [
+                            'name' => $this->getName(),
+                            'token' => $payload[$this->configuration->get('csrf_parameter')]
+                        ]
+                    );
                     return true;
-                } else {
-                    $this->logger->debug('invalid synchronizer token given', array('name' => $this->getName(), 'token' => $payload[$this->configuration->get('csrf_parameter')]));
                 }
+
+                $this->logger->debug(
+                    'invalid synchronizer token given',
+                    [
+                        'name' => $this->getName(),
+                        'token' => $payload[$this->configuration->get('csrf_parameter')]
+                    ]
+                );
             } else {
-                $this->logger->debug('no valid synchronizer token given', array('name' => $this->getName()));
+                $this->logger->debug(
+                    'no valid synchronizer token given',
+                    ['name' => $this->getName()]
+                );
             }
             return false;
-        } else {
-            $this->logger->debug('skip synchronizer token validation', array('name' => $this->getName()));
         }
+
+        $this->logger->debug('skip synchronizer token validation', array('name' => $this->getName()));
+
         return true;
     }
 
@@ -375,14 +403,17 @@ abstract class FormAbstract implements FormInterface
         if ($this->getEntityContainerMap()->count() > 0) {
             $entityContainers = $this->getEntityContainerMap()->getAll();
 
-            $this->logger->debug('start form entity valiation', array('name' => $this->getName()));
+            $this->logger->debug('start form entity valiation', ['name' => $this->getName()]);
 
             /**
              * @var $entityContainer    \Naucon\Form\Mapper\EntityContainerInterface
              */
             foreach ($entityContainers as $entityContainer) {
                 if ($entityContainer->hasValidate()) {
-                    $this->logger->debug('invoke form prevalidator hook', array('name' => $this->getName(), 'entity' => $entityContainer->getName()));
+                    $this->logger->debug(
+                        'invoke form prevalidator hook',
+                        ['name' => $this->getName(), 'entity' => $entityContainer->getName()]
+                    );
                     // prevalidation hook
                     $entityContainer->invokeHook('prevalidatorHook');
 
@@ -392,18 +423,28 @@ abstract class FormAbstract implements FormInterface
                         /**
                          * @var \Naucon\Form\Validator\ViolationInterface $violation
                          */
-                        $violationsDump = array();
+                        $violationsDump = [];
                         foreach ($violations as $violation) {
                             $violationsDump[$violation->getName()] = $violation->getMessage();
                             $entityContainer->setError($violation->getName(), new FormError($violation->getName(), $violation->getMessage()));
                         }
                         $valid = false;
 
-                        $this->logger->debug('form entity violations', array('name' => $this->getName(), 'entity' => $entityContainer->getName(), 'violations' => $violationsDump));
+                        $this->logger->debug(
+                            'form entity violations',
+                            [
+                                'name' => $this->getName(),
+                                'entity' => $entityContainer->getName(),
+                                'violations' => $violationsDump
+                            ]
+                        );
                     }
 
                     // postvalidation hook
-                    $this->logger->debug('invoke form postvalidator hook', array('name' => $this->getName(), 'entity' => $entityContainer->getName()));
+                    $this->logger->debug(
+                        'invoke form postvalidator hook',
+                        ['name' => $this->getName(), 'entity' => $entityContainer->getName()]
+                    );
                     $entityContainer->invokeHook('postvalidatorHook');
 
                     if ($entityContainer->hasErrors()) {
@@ -414,9 +455,15 @@ abstract class FormAbstract implements FormInterface
         }
 
         if ($valid) {
-            $this->logger->debug('finished form entity valiation successful', array('name' => $this->getName()));
+            $this->logger->debug(
+                'finished form entity valiation successful',
+                ['name' => $this->getName()]
+            );
         } else {
-            $this->logger->debug('finished form entity valiation failed', array('name' => $this->getName()));
+            $this->logger->debug(
+                'finished form entity valiation failed',
+                ['name' => $this->getName()]
+            );
         }
         $this->setValid($valid);
     }

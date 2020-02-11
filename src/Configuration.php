@@ -32,7 +32,7 @@ class Configuration
      *
      * @param   array   $options         configuration
      */
-    public function __construct(array $options=array())
+    public function __construct(array $options = [])
     {
         $resolver = new OptionsResolver();
         $this->configureOptions($resolver);
@@ -48,18 +48,21 @@ class Configuration
      */
     protected function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'csrf_parameter' => '_csrf_token',
-            'csrf_protection' => true,
-            'collection_type' => FormCollectionInterface::COLLECTION_TYPE_ALL,
-            'locale' => 'en_EN',
-            'fallback_locales' => array('en_EN'),
-            'translator_paths' => array(),
-            'config_paths' => array(),
-            'validation_groups' => null
-        ));
+        $resolver->setDefaults(
+            [
+                'csrf_parameter' => '_csrf_token',
+                'csrf_protection' => true,
+                'collection_type' => FormCollectionInterface::COLLECTION_TYPE_ALL,
+                'locale' => 'en_EN',
+                'fallback_locales' => ['en_EN'],
+                'translator_paths' => [],
+                'config_paths' => [],
+                'validation_groups' => null
+            ]
+        );
 
-        $resolver->setAllowedValues('collection_type', array(FormCollectionInterface::COLLECTION_TYPE_ALL, FormCollectionInterface::COLLECTION_TYPE_ANY, FormCollectionInterface::COLLECTION_TYPE_MANY, FormCollectionInterface::COLLECTION_TYPE_ONE));
+        $resolver->setAllowedValues('collection_type', [FormCollectionInterface::COLLECTION_TYPE_ALL, FormCollectionInterface::COLLECTION_TYPE_ANY, FormCollectionInterface::COLLECTION_TYPE_MANY, FormCollectionInterface::COLLECTION_TYPE_ONE]
+        );
     }
 
     /**

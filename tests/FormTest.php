@@ -20,130 +20,130 @@ class FormTest extends \PHPUnit_Framework_TestCase
 {
     public function entityProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 new User(),
-                array(),
-                array(
+                [],
+                [
                     'username' => 'getUsername',
                     'firstname' => 'getFirstname',
                     'lastname' => 'getLastname',
                     'email' => 'getEmail',
                     'age' => 'getAge'
-                ),
-                array(
+                ],
+                [
                     'username' => 'max.mustermann',
                     'firstname' => 'Max',
                     'lastname' => 'Mustermann',
                     'email' => 'max.mustermann@yourdomain.com',
                     'age' => '18'
-                ),
+                ],
                 true,
                 true,
-                array(),
+                [],
                 'valid dataset user form'
-            ),
-            array(
+            ],
+            [
                 new User(),
-                array(),
-                array(
+                [],
+                [
                     'username' => 'getUsername',
                     'firstname' => 'getFirstname',
                     'lastname' => 'getLastname',
                     'email' => 'getEmail',
                     'age' => 'getAge'
-                ),
-                array(
+                ],
+                [
                     'username' => '',
                     'firstname' => 'Max',
                     'lastname' => 'Mustermann',
                     'email' => 'max.mustermann@yourdomain.com',
                     'age' => 'monday'
-                ),
+                ],
                 true,
                 false,
-                array('username', 'age'),
+                ['username', 'age'],
                 'invalid dataset user form with missing username and wrong age type'
-            ),
-            array(
+            ],
+            [
                 new User(),
-                array(),
-                array(
+                [],
+                [
                     'username' => 'getUsername',
                     'firstname' => 'getFirstname',
                     'lastname' => 'getLastname',
                     'email' => 'getEmail',
                     'age' => 'getAge'
-                ),
-                array(
+                ],
+                [
                     'email' => 'max.mustermann@yourdomain.com'
-                ),
+                ],
                 true,
                 false,
-                array('username'),
+                ['username'],
                 'invalid dataset user form with missing username'
-            ),
-            array(
+            ],
+            [
                 new User(),
-                array(),
-                array(
+                [],
+                [
                     'username' => 'getUsername',
                     'firstname' => 'getFirstname',
                     'lastname' => 'getLastname',
                     'email' => 'getEmail',
                     'age' => 'getAge'
-                ),
-                array(),
+                ],
+                [],
                 false,
                 false,
-                array('username'),
+                ['username'],
                 'invalid dataset user form with missing form data'
-            ),
-            array(
+            ],
+            [
                 new Address(),
-                array(),
-                array(
+                [],
+                [
                     'street_name' => 'getStreetName',
                     'street_number' => 'getStreetNumber',
                     'postal_code' => 'getPostalCode',
                     'town' => 'getTown',
                     'country' => 'getCountry'
-                ),
-                array(
+                ],
+                [
                     'street_name' => 'Any-Street',
                     'street_number' => '1',
                     'postal_code' => '12345',
                     'town' => 'Anywhere',
                     'country' => 'Anyland'
-                ),
+                ],
                 true,
                 false,
-                array('postal_code'),
+                ['postal_code'],
                 'invalid dataset address form with postvalidatorHook contrain violation',
-            ),
-            array(
+            ],
+            [
                 new Address(),
-                array(),
-                array(
+                [],
+                [
                     'street_name' => 'getStreetName',
                     'street_number' => 'getStreetNumber',
                     'postal_code' => 'getPostalCode',
                     'town' => 'getTown',
                     'country' => 'getCountry'
-                ),
-                array(
+                ],
+                [
                     'street_name' => 'Any-Street',
                     'street_number' => '1',
                     'postal_code' => '54321',
                     'town' => 'Anywhere',
                     'country' => 'Anyland'
-                ),
+                ],
                 true,
                 true,
-                array(),
+                [],
                 'valid dataset address form',
-            )
-        );
+            ]
+        ];
     }
 
     /**

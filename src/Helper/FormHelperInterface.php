@@ -21,7 +21,7 @@ interface FormHelperInterface
     /**
      * @param     array     $options
      */
-    public function setOptions(array $options=array());
+    public function setOptions(array $options = []);
 
     /**
      * @return    string

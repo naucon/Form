@@ -43,7 +43,7 @@ abstract class AbstractFormHelperField implements FormHelperFieldInterface
      */
     public function __construct()
     {
-        $this->attributeWhitelist = array('id', 'class', 'style');
+        $this->attributeWhitelist = ['id', 'class', 'style'];
     }
 
 
@@ -77,7 +77,7 @@ abstract class AbstractFormHelperField implements FormHelperFieldInterface
     /**
      * @param     array     $options        helper options
      */
-    public function setOptions(array $options=array())
+    public function setOptions(array $options = [])
     {
         $this->getOptions()->setAll($options);
     }

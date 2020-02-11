@@ -84,7 +84,7 @@ abstract class AbstractFormHelperTag implements FormHelperTagInterface
     /**
      * @param     array     $options        helper options
      */
-    public function setOptions(array $options=array())
+    public function setOptions(array $options = [])
     {
         $this->getOptions()->setAll($options);
     }

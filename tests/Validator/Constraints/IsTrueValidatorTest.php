@@ -23,21 +23,21 @@ class IsTrueValidatorTest extends ConstraintValidatorTestCase
 
     public function valueProvider()
     {
-        return array(
-            array(true, true),
-            array(false, false),
-            array(0, false),
-            array(1, true),
-            array(2.95, false),
-            array(-2.95, false),
-            array('0', false),
-            array('1', true),
-            array('2.95', false),
-            array('-2.95', false),
-            array('abc', false),
-            array('', false),
-            array(null, true),
-        );
+        return [
+            [true, true],
+            [false, false],
+            [0, false],
+            [1, true],
+            [2.95, false],
+            [-2.95, false],
+            ['0', false],
+            ['1', true],
+            ['2.95', false],
+            ['-2.95', false],
+            ['abc', false],
+            ['', false],
+            [null, true],
+        ];
     }
 
     /**
@@ -47,9 +47,11 @@ class IsTrueValidatorTest extends ConstraintValidatorTestCase
      */
     public function testValidate($value, $expectedResult)
     {
-        $constraint = new IsTrue(array(
-            'message' => 'myMessage',
-        ));
+        $constraint = new IsTrue(
+            [
+                'message' => 'myMessage',
+            ]
+        );
 
         $this->validator->validate($value, $constraint);
 
