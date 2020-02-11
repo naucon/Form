@@ -83,7 +83,7 @@ class Translator extends TranslatorBridge
         ;
 
         foreach ($finder as $file) {
-            [$translationDomain, $locale, $extension] = $foo = explode('.', $file->getBasename(), 3);
+            list($translationDomain, $locale, $extension) = $foo = explode('.', $file->getBasename(), 3);
 
             $this->handler->addResource($extension, $file->getPathname(), $locale, $translationDomain);
         }
