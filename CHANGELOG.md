@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.0 (2020-02-11)
+
+  * upgrade to symfony components 3.0 (breaking change)
+
 ## 1.1.4 (2019-12-11)
 
   * Make isEmail regexp compatible to RFC2822
