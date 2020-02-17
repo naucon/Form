@@ -43,6 +43,8 @@ class IsEmailValidatorTest extends AbstractConstraintValidatorTest
             ['[your.name@yourdomain.com]', false],
             ['your_name@yourdomain.com', true],
             ["newline@yourdomain.com\n", false],
+            ["newline@yourdomain.com\r", false],
+            ["newline@yourdomain.com\n\r", false],
             ["[newline@yourdomain.com\n]", false],
             ['your_name@', false],
             ['this is"not\allowed@example.com', false],
