@@ -85,7 +85,7 @@ class ValidatorBridge implements ValidatorInterface
             throw new InvalidArgumentException('validator has no valid entity');
         }
 
-        $result = array();
+        $result = [];
         $violations = $this->getHandler()->validate($entity, $constraints, $groups);
 
         /**

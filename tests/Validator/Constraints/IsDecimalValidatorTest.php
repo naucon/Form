@@ -9,12 +9,12 @@
  */
 namespace Naucon\Form\Tests\Validator\Constraints;
 
-use Symfony\Component\Validator\Tests\Constraints\AbstractConstraintValidatorTest;
+use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
 use Naucon\Form\Validator\Constraints\IsDecimal;
 use Naucon\Form\Validator\Constraints\IsDecimalValidator;
 
-class IsDecimalValidatorTest extends AbstractConstraintValidatorTest
+class IsDecimalValidatorTest extends ConstraintValidatorTestCase
 {
     protected function createValidator()
     {

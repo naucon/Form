@@ -40,7 +40,7 @@ abstract class AbstractFormHelperChoice implements FormHelperChoiceInterface
     /**
      * @var    array
      */
-    protected $choices = array();
+    protected $choices = [];
 
     /**
      * @var    array
@@ -53,7 +53,7 @@ abstract class AbstractFormHelperChoice implements FormHelperChoiceInterface
      */
     public function __construct()
     {
-        $this->attributeWhitelist = array('id', 'class', 'style');
+        $this->attributeWhitelist = ['id', 'class', 'style'];
     }
 
 
@@ -100,7 +100,7 @@ abstract class AbstractFormHelperChoice implements FormHelperChoiceInterface
     /**
      * @param     array     $choices
      */
-    public function setChoices(array $choices=array())
+    public function setChoices(array $choices = [])
     {
         $this->choices = $choices;
     }
@@ -119,7 +119,7 @@ abstract class AbstractFormHelperChoice implements FormHelperChoiceInterface
     /**
      * @param     array     $options        helper options
      */
-    public function setOptions(array $options=array())
+    public function setOptions(array $options = [])
     {
         $this->getOptions()->setAll($options);
     }

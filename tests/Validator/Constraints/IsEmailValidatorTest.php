@@ -12,12 +12,11 @@ namespace Naucon\Form\Tests\Validator\Constraints;
 
 use Naucon\Form\Validator\Constraints\IsDecimal;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
-use Symfony\Component\Validator\Tests\Constraints\AbstractConstraintValidatorTest;
-
+use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 use Naucon\Form\Validator\Constraints\IsEmail;
 use Naucon\Form\Validator\Constraints\IsEmailValidator;
 
-class IsEmailValidatorTest extends AbstractConstraintValidatorTest
+class IsEmailValidatorTest extends ConstraintValidatorTestCase
 {
     protected function createValidator()
     {

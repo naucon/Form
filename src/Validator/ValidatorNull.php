@@ -32,7 +32,7 @@ class ValidatorNull implements ValidatorInterface
             throw new InvalidArgumentException('given entity is no a object');
         }
 
-        return array();
+        return [];
     }
 
 }

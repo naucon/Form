@@ -9,12 +9,12 @@
  */
 namespace Naucon\Form\Tests\Validator\Constraints;
 
-use Symfony\Component\Validator\Tests\Constraints\AbstractConstraintValidatorTest;
+use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
 use Naucon\Form\Validator\Constraints\IsIp;
 use Naucon\Form\Validator\Constraints\IsIpValidator;
 
-class IsIpValidatorTest extends AbstractConstraintValidatorTest
+class IsIpValidatorTest extends ConstraintValidatorTestCase
 {
     protected function createValidator()
     {

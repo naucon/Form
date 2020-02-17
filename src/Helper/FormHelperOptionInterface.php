@@ -48,5 +48,5 @@ interface FormHelperOptionInterface extends FormHelperInterface
     /**
      * @param     array         $choices
      */
-    public function setChoices(array $choices=array());
+    public function setChoices(array $choices = []);
 }

@@ -23,7 +23,7 @@ class FormErrorsDecoratorArray extends FormErrorsDecoratorAbstract
      */
     public function getErrors()
     {
-        $errors = array();
+        $errors = [];
         $formErrors = $this->getForm()->getErrors();
 
         foreach ($formErrors as $formKey => $formError) {

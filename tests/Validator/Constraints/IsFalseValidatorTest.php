@@ -9,12 +9,12 @@
  */
 namespace Naucon\Form\Tests\Validator\Constraints;
 
-use Symfony\Component\Validator\Tests\Constraints\AbstractConstraintValidatorTest;
+use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
 use Naucon\Form\Validator\Constraints\IsFalse;
 use Naucon\Form\Validator\Constraints\IsFalseValidator;
 
-class IsFalseValidatorTest extends AbstractConstraintValidatorTest
+class IsFalseValidatorTest extends ConstraintValidatorTestCase
 {
     protected function createValidator()
     {
@@ -23,21 +23,21 @@ class IsFalseValidatorTest extends AbstractConstraintValidatorTest
 
     public function valueProvider()
     {
-        return array(
-            array(true, false),
-            array(false, true),
-            array(0, true),
-            array(1, false),
-            array(2.95, false),
-            array(-2.95, false),
-            array('0', true),
-            array('1', false),
-            array('2.95', false),
-            array('-2.95', false),
-            array('abc', false),
-            array('', false),
-            array(null, true),
-        );
+        return [
+            [true, false],
+            [false, true],
+            [0, true],
+            [1, false],
+            [2.95, false],
+            [-2.95, false],
+            ['0', true],
+            ['1', false],
+            ['2.95', false],
+            ['-2.95', false],
+            ['abc', false],
+            ['', false],
+            [null, true],
+        ];
     }
 
     /**
@@ -47,9 +47,11 @@ class IsFalseValidatorTest extends AbstractConstraintValidatorTest
      */
     public function testValidate($value, $expectedResult)
     {
-        $constraint = new IsFalse(array(
-            'message' => 'myMessage',
-        ));
+        $constraint = new IsFalse(
+            [
+                'message' => 'myMessage',
+            ]
+        );
 
         $this->validator->validate($value, $constraint);
 

@@ -50,7 +50,7 @@ class FormManager implements SynchronizerTokenAwareInterface, ValidatorAwareInte
      *
      * @param   array       $options             optional configuration
      */
-    public function __construct(array $options=array())
+    public function __construct(array $options = [])
     {
         $this->configuration = new Configuration($options);
     }

@@ -17,142 +17,159 @@ use Naucon\Form\Tests\Entities\User;
 use Naucon\Form\Tests\Entities\Product;
 use Naucon\Form\Tests\Entities\Address;
 use Symfony\Component\Security\Csrf\CsrfTokenManager;
+use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
+use Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface;
 
 class FormWithSynchronizerTokenBridgeTest extends \PHPUnit_Framework_TestCase
 {
-	protected function setUp()
+    /**
+     * @var TokenGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject
+     */
+    private $generator;
+
+    /**
+     * @var CsrfTokenManager
+     */
+    private $manager;
+
+    /**
+     * @var TokenStorageInterface|\PHPUnit_Framework_MockObject_MockObject
+     */
+    private $storage;
+
+    protected function setUp()
 	{
-		$this->generator = $this->getMock('Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface');
-		$this->storage = $this->getMock('Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface');
+		$this->generator = $this->getMockBuilder(TokenGeneratorInterface::class)->getMock();
+		$this->storage = $this->getMockBuilder(TokenStorageInterface::class)->getMock();
 		$this->manager = new CsrfTokenManager($this->generator, $this->storage);
 	}
 
 	public function entityProvider()
 	{
-		return array(
-			array(
-				new User(),
-				array(),
-				array(
+		return [
+            [
+                new User(),
+                [],
+                [
 					'username' => 'getUsername',
 					'firstname' => 'getFirstname',
 					'lastname' => 'getLastname',
 					'email' => 'getEmail',
 					'age' => 'getAge'
-				),
-				array(
+                ],
+                [
 					'username' => 'max.mustermann',
 					'firstname' => 'Max',
 					'lastname' => 'Mustermann',
 					'email' => 'max.mustermann@yourdomain.com',
 					'age' => '18'
-				),
-				true,
-				true,
-				array(),
-				'valid dataset user form'
-			),
-			array(
-				new User(),
-				array(),
-				array(
+                ],
+                true,
+                true,
+                [],
+                'valid dataset user form'
+            ],
+            [
+                new User(),
+                [],
+                [
 					'username' => 'getUsername',
 					'firstname' => 'getFirstname',
 					'lastname' => 'getLastname',
 					'email' => 'getEmail',
 					'age' => 'getAge'
-				),
-				array(
+                ],
+                [
 					'username' => '',
 					'firstname' => 'Max',
 					'lastname' => 'Mustermann',
 					'email' => 'max.mustermann@yourdomain.com',
 					'age' => 'monday'
-				),
-				true,
-				false,
-				array('username', 'age'),
-				'invalid dataset user form with missing username and wrong age type'
-			),
-			array(
-				new User(),
-				array(),
-				array(
+                ],
+                true,
+                false,
+                ['username', 'age'],
+                'invalid dataset user form with missing username and wrong age type'
+            ],
+            [
+                new User(),
+                [],
+                [
 					'username' => 'getUsername',
 					'firstname' => 'getFirstname',
 					'lastname' => 'getLastname',
 					'email' => 'getEmail',
 					'age' => 'getAge'
-				),
-				array(
+                ],
+                [
 					'email' => 'max.mustermann@yourdomain.com',
-				),
-				true,
-				false,
-				array('username'),
-				'invalid dataset user form with missing username'
-			),
-			array(
-				new User(),
-				array(),
-				array(
+                ],
+                true,
+                false,
+                ['username'],
+                'invalid dataset user form with missing username'
+            ],
+            [
+                new User(),
+                [],
+                [
 					'username' => 'getUsername',
 					'firstname' => 'getFirstname',
 					'lastname' => 'getLastname',
 					'email' => 'getEmail',
 					'age' => 'getAge'
-				),
-				array(),
-				false,
-				false,
-				array('username'),
-				'invalid dataset user form with missing form data'
-			),
-			array(
-				new Address(),
-				array(),
-				array(
+                ],
+                [],
+                false,
+                false,
+                ['username'],
+                'invalid dataset user form with missing form data'
+            ],
+            [
+                new Address(),
+                [],
+                [
 					'street_name' => 'getStreetName',
 					'street_number' => 'getStreetNumber',
 					'postal_code' => 'getPostalCode',
 					'town' => 'getTown',
 					'country' => 'getCountry'
-				),
-				array(
+                ],
+                [
 					'street_name' => 'Any-Street',
 					'street_number' => '1',
 					'postal_code' => '12345',
 					'town' => 'Anywhere',
 					'country' => 'Anyland'
-				),
-				true,
-				false,
-				array('postal_code'),
-				'invalid dataset address form with postvalidatorHook contrain violation',
-			),
-			array(
-				new Address(),
-				array(),
-				array(
+                ],
+                true,
+                false,
+                ['postal_code'],
+                'invalid dataset address form with postvalidatorHook contrain violation',
+            ],
+            [
+                new Address(),
+                [],
+                [
 					'street_name' => 'getStreetName',
 					'street_number' => 'getStreetNumber',
 					'postal_code' => 'getPostalCode',
 					'town' => 'getTown',
 					'country' => 'getCountry'
-				),
-				array(
+                ],
+                [
 					'street_name' => 'Any-Street',
 					'street_number' => '1',
 					'postal_code' => '54321',
 					'town' => 'Anywhere',
 					'country' => 'Anyland'
-				),
-				true,
-				true,
-				array(),
-				'valid dataset address form',
-			)
-		);
+                ],
+                true,
+                true,
+                [],
+                'valid dataset address form',
+            ]
+        ];
 	}
 
 	/**
@@ -176,12 +193,12 @@ class FormWithSynchronizerTokenBridgeTest extends \PHPUnit_Framework_TestCase
 		$this->storage->expects($this->any())
 			->method('hasToken')
 			->with('testform')
-			->will($this->returnValue(true));
+			->willReturn(true);
 
 		$this->storage->expects($this->any())
 			->method('getToken')
 			->with('testform')
-			->will($this->returnValue('TOKEN'));
+			->willReturn('TOKEN');
 
 		$configuration = new Configuration($config);
 
@@ -227,12 +244,12 @@ class FormWithSynchronizerTokenBridgeTest extends \PHPUnit_Framework_TestCase
 		$this->storage->expects($this->any())
 			->method('hasToken')
 			->with('testform')
-			->will($this->returnValue(true));
+			->willReturn(true);
 
 		$this->storage->expects($this->any())
 			->method('getToken')
 			->with('testform')
-			->will($this->returnValue('TOKEN'));
+			->willReturn('TOKEN');
 
 		$configuration = new Configuration($config);
 
@@ -383,12 +400,12 @@ class FormWithSynchronizerTokenBridgeTest extends \PHPUnit_Framework_TestCase
 		$this->storage->expects($this->any())
 			->method('hasToken')
 			->with('testforms')
-			->will($this->returnValue(true));
+			->willReturn(true);
 
 		$this->storage->expects($this->any())
 			->method('getToken')
 			->with('testforms')
-			->will($this->returnValue('TOKEN'));
+			->willReturn('TOKEN');
 
 		$configuration = new Configuration($config);
 
@@ -428,12 +445,12 @@ class FormWithSynchronizerTokenBridgeTest extends \PHPUnit_Framework_TestCase
 		$this->storage->expects($this->any())
 			->method('hasToken')
 			->with('testforms')
-			->will($this->returnValue(true));
+			->willReturn(true);
 
 		$this->storage->expects($this->any())
 			->method('getToken')
 			->with('testforms')
-			->will($this->returnValue('TOKEN'));
+			->willReturn('TOKEN');
 
 		$configuration = new Configuration($config);
 

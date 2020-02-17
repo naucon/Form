@@ -59,7 +59,7 @@ class FormHelper extends AbstractFormHelper
 
         $this->setHtmlElement($htmlElement);
 
-        $this->attributeWhitelist = array('id', 'class', 'style');
+        $this->attributeWhitelist = ['id', 'class', 'style'];
 
         parent::__construct($form);
     }
@@ -105,7 +105,7 @@ class FormHelper extends AbstractFormHelper
      * @param     array         $options        form options
      * @return    string        html output
      */
-    public function formField($helperName, $propertyName, array $options=array())
+    public function formField($helperName, $propertyName, array $options = [])
     {
         $property = $this->current()->getProperty($propertyName);
 
@@ -122,7 +122,7 @@ class FormHelper extends AbstractFormHelper
      * @param     array         $options        form options
      * @return    string        html output
      */
-    public function formChoice($helperName, $propertyName, $value, array $options=array())
+    public function formChoice($helperName, $propertyName, $value, array $options = [])
     {
         $property = $this->current()->getProperty($propertyName);
 
@@ -138,7 +138,7 @@ class FormHelper extends AbstractFormHelper
      * @param     array         $options        form options
      * @return    string        html output
      */
-    public function formTag($helperName, $content=null, array $options=array())
+    public function formTag($helperName, $content=null, array $options = [])
     {
         return $this->getHelperMap()->loadTag($this->getForm(), $helperName, $content, $options);
     }
@@ -149,7 +149,7 @@ class FormHelper extends AbstractFormHelper
      * @param     array         $options        form options
      * @return    string        html output
      */
-    public function formOption($helperName, $value, array $options=array())
+    public function formOption($helperName, $value, array $options = [])
     {
         return $this->getHelperMap()->loadOption($this->getForm(), $helperName, $value, $options);
     }
@@ -161,7 +161,7 @@ class FormHelper extends AbstractFormHelper
      * @param     array         $options        form options
      * @return    string        html output
      */
-    public function formStart($method='post', $action=null, $enctype=null, $options=array())
+    public function formStart($method='post', $action = null, $enctype = null, $options = [])
     {
         $htmlElement = $this->getHtmlElement();
         $htmlElement->setMethod($method);

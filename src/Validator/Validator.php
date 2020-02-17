@@ -33,7 +33,7 @@ class Validator extends ValidatorBridge
     public function __construct(Configuration $configuration, TranslatorInterface $translator=null)
     {
         // add translations from configuration
-        $dirs = array();
+        $dirs = [];
         foreach ($configuration->get('config_paths') as $dir) {
             if (is_dir($dir)) {
                 $dirs[] = $dir;
