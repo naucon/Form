@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.5 (2020-02-17)
+
+  * fix issue in email validation with line breaks
+
 ## 1.1.4 (2019-12-11)
 
   * Make isEmail regexp compatible to RFC2822
