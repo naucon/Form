@@ -1,8 +1,16 @@
 # Changelog
 
+## 2.0.1 (2020-02-17)
+
+  * fix issue in email validation with line breaks
+
 ## 2.0.0 (2020-02-11)
 
   * upgrade to symfony components 3.0 (breaking change)
+
+## 1.1.5 (2020-02-17)
+
+  * fix issue in email validation with line breaks
 
 ## 1.1.4 (2019-12-11)
 
