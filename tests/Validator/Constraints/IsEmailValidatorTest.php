@@ -12,11 +12,12 @@ namespace Naucon\Form\Tests\Validator\Constraints;
 
 use Naucon\Form\Validator\Constraints\IsDecimal;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
-use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
+use Symfony\Component\Validator\Tests\Constraints\AbstractConstraintValidatorTest;
+
 use Naucon\Form\Validator\Constraints\IsEmail;
 use Naucon\Form\Validator\Constraints\IsEmailValidator;
 
-class IsEmailValidatorTest extends ConstraintValidatorTestCase
+class IsEmailValidatorTest extends AbstractConstraintValidatorTest
 {
     protected function createValidator()
     {
@@ -39,7 +40,10 @@ class IsEmailValidatorTest extends ConstraintValidatorTestCase
             ['admin@mailserver1', true],
             ['example@s.example', true],
             ['your.name@yourdomain.com', true],
+            ['[your.name@yourdomain.com]', false],
             ['your_name@yourdomain.com', true],
+            ["newline@yourdomain.com\n", false],
+            ["[newline@yourdomain.com\n]", false],
             ['your_name@', false],
             ['this is"not\allowed@example.com', false],
             ['this\ still\"not\\allowed@example.com', false],
