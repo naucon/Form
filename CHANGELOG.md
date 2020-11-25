@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.2 (2020-11-25)
+
+  * fix behavior of Symfony CSRF Bridge implementation for generating new token
+  
 ## 2.0.1 (2020-02-17)
 
   * fix issue in email validation with line breaks
