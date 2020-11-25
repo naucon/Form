@@ -40,7 +40,7 @@ class SynchronizerTokenBridge implements SynchronizerTokenInterface
             $handler = new BaseCsrfTokenManager();
         }
 
-        $this->setHandler($handler);
+        $this->handler = $handler;
     }
 
 
@@ -53,14 +53,6 @@ class SynchronizerTokenBridge implements SynchronizerTokenInterface
     }
 
     /**
-     * @param       \Symfony\Component\Security\Csrf\CsrfTokenManagerInterface   $handler      synchronizer token handler
-     */
-    protected function setHandler(BaseCsrfTokenManagerInterface $handler)
-    {
-        $this->handler = $handler;
-    }
-
-    /**
      * generate a synchronizer token
      *
      * @param       string      $tokenKey       token key
@@ -68,7 +60,7 @@ class SynchronizerTokenBridge implements SynchronizerTokenInterface
      */
     public function generateToken($tokenKey)
     {
-        $csrfToken = $this->getHandler()->getToken($tokenKey);
+        $csrfToken = $this->getHandler()->refreshToken($tokenKey);
         return $csrfToken->getValue();
     }
 
