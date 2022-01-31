@@ -13,6 +13,8 @@
     "require": {
         "php": "^5.5.9|>=7.0.8",
         "psr/log": "~1.0",
+        "doctrine/annotations": "^1.0",
+        "doctrine/cache": "^1.0",
         "naucon/utility": "~1.0",
         "naucon/htmlbuilder": "~1.0",
         "symfony/validator": "^3.0",
@@ -25,15 +27,11 @@
     "require-dev": {
         "symfony/intl": "^3.0",
         "symfony/config": "^3.0",
-        "doctrine/annotations": "~1.0",
-        "doctrine/cache": "~1.0",
         "naucon/iban": "~1.0",
         "phpunit/phpunit": "^5.6"
     },
     "suggest": {
         "symfony/config": "Is required to use xml mapping.",
-        "doctrine/annotations": "Is required to use annotation mapping.",
-        "doctrine/cache": "Is required to use annotation mapping.",
         "naucon/iban": "Is required to validate iban."
     },
     "autoload": {
