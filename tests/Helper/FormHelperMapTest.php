@@ -16,8 +16,9 @@ use Naucon\Form\Helper\FormHelperMap;
 use Naucon\Form\Tests\Entities\User;
 use Naucon\Form\Tests\Helper\FormHelperFieldFoo;
 use Naucon\Form\Tests\Helper\FormHelperFieldBar;
+use PHPUnit\Framework\TestCase;
 
-class FormHelperMapTest extends \PHPUnit_Framework_TestCase
+class FormHelperMapTest extends TestCase
 {
     /**
      * @return    EntityContainerInterface
@@ -35,6 +36,8 @@ class FormHelperMapTest extends \PHPUnit_Framework_TestCase
         $configuration = new Configuration();
         $form = new Form($userEntity, 'testform', $configuration);
         $entityContainer = $form->getFirstEntityContainer();
+
+        $this->assertNotNull($entityContainer);
 
         return $entityContainer;
     }

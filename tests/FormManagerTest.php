@@ -21,8 +21,9 @@ use Naucon\Form\Tests\Entities\Product;
 use Naucon\Form\Tests\Entities\Address;
 use Naucon\Form\Tests\Entities\CreditCard;
 use Naucon\Form\Tests\Entities\DirectDebit;
+use PHPUnit\Framework\TestCase;
 
-class FormManagerTest extends \PHPUnit_Framework_TestCase
+class FormManagerTest extends TestCase
 {
     /**
      * @var SynchronizerTokenInterface

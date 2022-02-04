@@ -16,11 +16,12 @@ use Naucon\Form\Security\SynchronizerTokenBridge;
 use Naucon\Form\Tests\Entities\User;
 use Naucon\Form\Tests\Entities\Product;
 use Naucon\Form\Tests\Entities\Address;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Security\Csrf\CsrfTokenManager;
 use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
 use Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface;
 
-class FormWithSynchronizerTokenBridgeTest extends \PHPUnit_Framework_TestCase
+class FormWithSynchronizerTokenBridgeTest extends TestCase
 {
     /**
      * @var TokenGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject

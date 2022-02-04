@@ -9,6 +9,7 @@
  */
 namespace Naucon\Form\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Translation\Formatter\MessageFormatter;
 use Symfony\Component\Translation\Translator as BaseTranslator;
@@ -20,7 +21,7 @@ use Naucon\Form\Validator\Validator;
 use Naucon\Form\Translator\TranslatorBridge;
 use Naucon\Form\Tests\Entities\User;
 
-class FormWithTranslatorBridgeTest extends \PHPUnit_Framework_TestCase
+class FormWithTranslatorBridgeTest extends TestCase
 {
     public function entityProvider()
     {
@@ -124,10 +125,6 @@ class FormWithTranslatorBridgeTest extends \PHPUnit_Framework_TestCase
         foreach ($methods as $method) {
             $this->assertEquals('', $entity->$method());
         }
-
-		$configPaths = [];
-		$configPaths['en_EN'] = __DIR__ . '/Resources/translations/validators.en.yml';
-		$configPaths['de_DE'] = __DIR__ . '/Resources/translations/validators.de.yml';
 
 		$translator = new BaseTranslator('de_DE', new MessageFormatter());
 		$translator->addLoader('xlf', new XliffFileLoader());

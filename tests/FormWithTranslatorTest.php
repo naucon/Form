@@ -14,8 +14,9 @@ use Naucon\Form\Configuration;
 use Naucon\Form\Tests\Entities\User;
 use Naucon\Form\Translator\Translator;
 use Naucon\Form\Validator\Validator;
+use PHPUnit\Framework\TestCase;
 
-class FormWithTranslatorTest extends \PHPUnit_Framework_TestCase
+class FormWithTranslatorTest extends TestCase
 {
     public function entityProvider()
     {

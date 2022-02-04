@@ -15,11 +15,12 @@ use Naucon\Form\FormHelper;
 use Naucon\Form\Tests\Entities\CreditCard;
 use Naucon\Form\Tests\Entities\DirectDebit;
 use Naucon\Form\Security\SynchronizerTokenBridge;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Security\Csrf\CsrfTokenManager;
 use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
 use Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface;
 
-class FormCollectionHelperTest extends \PHPUnit_Framework_TestCase
+class FormCollectionHelperTest extends TestCase
 {
     /**
      * @var TokenGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject

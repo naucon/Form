@@ -15,13 +15,14 @@ use Naucon\Form\Mapper\EntityContainerInterface;
 use Naucon\Form\Mapper\Property;
 use Naucon\Form\Tests\Entities\User;
 use Naucon\Utility\Map;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class FormHelperFieldNameTest
  *
  * @package Naucon\Form\Tests
  */
-class FormHelperFieldNameTest extends \PHPUnit_Framework_TestCase
+class FormHelperFieldNameTest extends TestCase
 {
     /**
      * @var FormInterface|\PHPUnit_Framework_MockObject_MockObject

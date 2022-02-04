@@ -15,8 +15,9 @@ use Naucon\Form\Validator\Validator;
 use Naucon\Form\Tests\Entities\User;
 use Naucon\Form\Tests\Entities\Product;
 use Naucon\Form\Tests\Entities\Address;
+use PHPUnit\Framework\TestCase;
 
-class FormTest extends \PHPUnit_Framework_TestCase
+class FormTest extends TestCase
 {
     public function entityProvider()
     {

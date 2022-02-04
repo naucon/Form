@@ -14,8 +14,9 @@ use Naucon\Form\Configuration;
 use Naucon\Form\Validator\Validator;
 use Naucon\Form\Tests\Entities\UserWithConfig;
 use Naucon\Form\Tests\Entities\UserWithAnnotation;
+use PHPUnit\Framework\TestCase;
 
-class FormWithValidatorTest extends \PHPUnit_Framework_TestCase
+class FormWithValidatorTest extends TestCase
 {
     public function entityProvider()
     {

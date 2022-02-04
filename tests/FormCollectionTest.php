@@ -16,8 +16,9 @@ use Naucon\Form\Validator\Validator;
 use Naucon\Form\Tests\Entities\Product;
 use Naucon\Form\Tests\Entities\CreditCard;
 use Naucon\Form\Tests\Entities\DirectDebit;
+use PHPUnit\Framework\TestCase;
 
-class FormCollectionTest extends \PHPUnit_Framework_TestCase
+class FormCollectionTest extends TestCase
 {
     public function entitiesProvider()
     {
