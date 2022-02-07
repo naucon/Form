@@ -16,8 +16,9 @@ use Naucon\Utility\Map;
 use Naucon\Form\FormInterface;
 use Naucon\Form\Mapper\EntityContainerInterface;
 use Naucon\Form\FormCollectionInterface;
+use PHPUnit\Framework\TestCase;
 
-class FormHelperChoiceCheckboxTest extends \PHPUnit_Framework_TestCase
+class FormHelperChoiceCheckboxTest extends TestCase
 {
     public function testInit()
     {
@@ -72,7 +73,7 @@ class FormHelperChoiceCheckboxTest extends \PHPUnit_Framework_TestCase
             ->method('count')
             ->willReturn(1);
 
-        $form = $this->getMockBuilder(FormCollectionInterface::class)->getMock();
+        $form = $this->createMock(FormCollectionInterface::class);
         $form
             ->expects($this->any())
             ->method('getName')

@@ -11,8 +11,9 @@ namespace Naucon\Form\Tests;
 
 use Naucon\Form\FormCollectionInterface;
 use Naucon\Form\Configuration;
+use PHPUnit\Framework\TestCase;
 
-class ConfigurationTest extends \PHPUnit_Framework_TestCase
+class ConfigurationTest extends TestCase
 {
     public function configProvider()
     {

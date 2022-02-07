@@ -11,13 +11,14 @@ namespace Naucon\Form\Tests;
 
 use Naucon\Form\FormCollectionInterface;
 use Naucon\Form\Helper\FormHelperOptionRadio;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class FormHelperOptionRadioTest
  *
  * @package Naucon\Form\Tests
  */
-class FormHelperOptionRadioTest extends \PHPUnit_Framework_TestCase
+class FormHelperOptionRadioTest extends TestCase
 {
     /**
      * @var FormCollectionInterface|\PHPUnit_Framework_MockObject_MockObject

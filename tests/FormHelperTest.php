@@ -20,8 +20,9 @@ use Naucon\Form\Mapper\EntityContainerInterface;
 use Naucon\Form\Tests\Entities\Product;
 use Naucon\Form\Tests\Entities\User;
 use Naucon\Form\Validator\Validator;
+use PHPUnit\Framework\TestCase;
 
-class FormHelperTest extends \PHPUnit_Framework_TestCase
+class FormHelperTest extends TestCase
 {
     public function formWithConfigProvider()
     {
@@ -955,6 +956,8 @@ class FormHelperTest extends \PHPUnit_Framework_TestCase
         $configuration = new Configuration();
         $form = new Form($userEntity, 'testform', $configuration);
         $entityContainer = $form->getFirstEntityContainer();
+
+        $this->assertNotNull($entityContainer);
 
         return $entityContainer;
     }

@@ -16,13 +16,14 @@ use Naucon\Form\Mapper\EntityContainerInterface;
 use Naucon\Form\Mapper\Property;
 use Naucon\Form\Tests\Entities\User;
 use Naucon\Utility\Map;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class FormHelperChoiceRadioTest
  *
  * @package Naucon\Form\Tests
  */
-class FormHelperChoiceRadioTest extends \PHPUnit_Framework_TestCase
+class FormHelperChoiceRadioTest extends TestCase
 {
     /**
      * @var FormInterface|\PHPUnit_Framework_MockObject_MockObject

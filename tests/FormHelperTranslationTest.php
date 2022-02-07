@@ -18,8 +18,9 @@ use Naucon\Form\Tests\Entities\User;
 use Naucon\Form\Tests\Entities\Product;
 use Naucon\Form\Translator\Translator;
 use Naucon\Form\Validator\Validator;
+use PHPUnit\Framework\TestCase;
 
-class FormHelperTranslationTest extends \PHPUnit_Framework_TestCase
+class FormHelperTranslationTest extends TestCase
 {
     public function formWithConfigProvider()
     {

@@ -10,8 +10,9 @@
 namespace Naucon\Form\Tests\Utility;
 
 use Naucon\Form\Utility\Utility;
+use PHPUnit\Framework\TestCase;
 
-class UtilityTest extends \PHPUnit_Framework_TestCase
+class UtilityTest extends TestCase
 {
     public function nameProvider()
     {

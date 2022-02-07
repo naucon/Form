@@ -15,8 +15,9 @@ use Naucon\Form\Tests\Entities\Product;
 use Naucon\Form\Tests\Entities\Address;
 use Naucon\Form\Tests\Entities\CreditCard;
 use Naucon\Form\Tests\Entities\DirectDebit;
+use PHPUnit\Framework\TestCase;
 
-class PropertyMapperTest extends \PHPUnit_Framework_TestCase
+class PropertyMapperTest extends TestCase
 {
     public function entityProvider()
     {

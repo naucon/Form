@@ -14,9 +14,10 @@ use Naucon\Form\Configuration;
 use Naucon\Form\Validator\ValidatorBridge;
 use Naucon\Form\Tests\Entities\UserWithConfig;
 use Naucon\Form\Tests\Entities\UserWithAnnotation;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Validation;
 
-class FormWithValidatorBridgeTest extends \PHPUnit_Framework_TestCase
+class FormWithValidatorBridgeTest extends TestCase
 {
     public function entityProvider()
     {

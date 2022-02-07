@@ -24,7 +24,7 @@ The package can be integrated into any php web application (min. php5.5+).
 
 ### Compatibility
 
-* PHP 5.5.9+
+* PHP 7.1 - 7.4
 
 
 Installation

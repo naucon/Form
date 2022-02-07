@@ -104,10 +104,10 @@ class User
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
-        $metadata->addPropertyConstraint('username', new Assert\NotBlank());
         $metadata->addPropertyConstraint('username', new Assert\Length(
             array('min' => 5, 'max' => 50)
         ));
+        $metadata->addPropertyConstraint('username', new Assert\NotBlank());
         $metadata->addPropertyConstraint('email', new Assert\Email());
         $metadata->addPropertyConstraint('age', new Assert\Type('numeric'));
     }
