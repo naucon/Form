@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.0.0 (2022-02-07)
+
+  * add compatibility to Symfony 4, min. requirement PHP 7.1 
+
 ## 2.0.2 (2020-11-25)
 
   * fix behavior of Symfony CSRF Bridge implementation for generating new token
