@@ -30,11 +30,13 @@
         "symfony/intl": "^3.2 || ^4.0",
         "symfony/config": "^3.2 || ^4.0",
         "naucon/iban": "~1.0",
-        "phpunit/phpunit": "^7.0"
+        "phpunit/phpunit": "^7.0",
+        "twig/twig" : "^2.4"
     },
     "suggest": {
         "symfony/config": "Is required to use xml mapping.",
-        "naucon/iban": "Is required to validate iban."
+        "naucon/iban": "Is required to validate iban.",
+        "twig/twig": "Is required for using the twig form extension"
     },
     "autoload": {
         "psr-4": {"Naucon\\Form\\": "src/"}
