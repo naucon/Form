@@ -1,6 +1,6 @@
 name: CI
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build-test-71:
@@ -11,7 +11,7 @@ jobs:
 
       - uses: php-actions/composer@v6
         with:
-          version: 2
+          version: 1
           php_version: "7.1"
 
       - name: PHPUnit Tests
