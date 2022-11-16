@@ -1,12 +1,20 @@
 # Changelog
 
-## 3.0.1 (2022-11-16)
+## 3.1.1 (2022-11-16)
 
 * fix email validation that doesn't accept dots at the start and end (RFC2822)
+
+## 3.1.0 (2022-08-29)
+
+* Added Form Extension for Twig
 
 ## 3.0.0 (2022-02-07)
 
   * add compatibility to Symfony 4, min. requirement PHP 7.1 
+
+## 2.0.3 (2022-01-31)
+
+  * fix problem with missing doctrine dependencies required by symfony validation
 
 ## 2.0.2 (2020-11-25)
 
