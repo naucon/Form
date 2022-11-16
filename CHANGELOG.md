@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.0.1 (2022-11-16)
+
+* fix email validation that doesn't accept dots at the start and end (RFC2822)
+
 ## 3.0.0 (2022-02-07)
 
   * add compatibility to Symfony 4, min. requirement PHP 7.1 
