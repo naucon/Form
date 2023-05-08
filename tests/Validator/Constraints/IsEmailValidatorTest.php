@@ -54,6 +54,7 @@ class IsEmailValidatorTest extends ConstraintValidatorTestCase
             ['yourname@yourdomain.com <Your Name>', false],
             ['your_name.@yourdomain.com', false],
             ['.your_name@yourdomain.com', false],
+            ['-your_name@yourdomain.com', false],
             [0, false],
             [1, false],
             [2.95, false],
