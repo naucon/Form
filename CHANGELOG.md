@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.1.2 (2023-05-08)
+
+* fix email validation so that emails that start with a dash are prohibited
+
 ## 3.1.1 (2022-11-16)
 
 * fix email validation that doesn't accept dots at the start and end (RFC2822)
