@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.1.3 (2023-09-04)
+
+* Improve email validation of domain part to be more strict
+
 ## 3.1.2 (2023-05-08)
 
 * fix email validation so that emails that start with a dash are prohibited
