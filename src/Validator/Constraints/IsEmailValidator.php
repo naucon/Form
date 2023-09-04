@@ -22,7 +22,7 @@ use Symfony\Component\Validator\Exception\UnexpectedTypeException;
  */
 class IsEmailValidator extends ConstraintValidator
 {
-    const REGEXP = '/^(?![.-])([a-zA-Z0-9_\-\+]+(?:\.[a-zA-Z0-9_\-\+]+)*\@([a-zA-Z0-9\-\+]+\.?)+[a-zA-Z0-9]{0,10},?)+$/D';
+    const REGEXP = '/^(?![.-])([a-zA-Z0-9_\-\+]+(\.[a-zA-Z0-9_\-\+]+)*)@([a-zA-Z0-9]+([\-\.]{1}[a-zA-Z0-9]+)*)\.([a-zA-Z0-9]{2,10})$/D';
 
     /**
      * {@inheritdoc}

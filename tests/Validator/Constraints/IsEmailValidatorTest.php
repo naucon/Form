@@ -36,7 +36,7 @@ class IsEmailValidatorTest extends ConstraintValidatorTestCase
             ['x@example.com', true],
             ['example-indeed@strange.example.com', true],
             ['example-indeed@strange-example.com', true],
-            ['admin@mailserver1', true],
+            ['admin@mailserver1', false], //invalid domain name
             ['example@s.example', true],
             ['your.name@yourdomain.com', true],
             ['[your.name@yourdomain.com]', false],
@@ -65,6 +65,11 @@ class IsEmailValidatorTest extends ConstraintValidatorTestCase
             ['abc', false],
             ['', false],
             [null, true],
+            ['olaf@-online.de', false],
+            ['olaf@-online.d', false],
+            ['olaf@t-onlinde', false],
+            ['olaf@shw-.goldenspices.com', false],
+            ['olav@gmail', false],
         ];
     }
 
