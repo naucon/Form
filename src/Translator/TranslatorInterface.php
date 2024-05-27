@@ -9,7 +9,7 @@
  */
 namespace Naucon\Form\Translator;
 
-use Symfony\Component\Translation\TranslatorInterface as BaseTranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface as BaseTranslatorInterface;
 
 /**
  * Translator Interface
