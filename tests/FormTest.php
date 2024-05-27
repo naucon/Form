@@ -9,6 +9,7 @@
  */
 namespace Naucon\Form\Tests;
 
+use Naucon\Form\Exception\InvalidArgumentException;
 use Naucon\Form\Form;
 use Naucon\Form\Configuration;
 use Naucon\Form\Validator\Validator;
@@ -216,10 +217,10 @@ class FormTest extends TestCase
 
     /**
      * @dataProvider wrongEntityProvider
-     * @expectedException \Naucon\Form\Exception\InvalidArgumentException
      */
     public function testFormWithInvalidEntity($entity)
     {
+        $this->expectException(InvalidArgumentException::class);
         $configuration = new Configuration();
 
         $form = new Form($entity, 'testform', $configuration);

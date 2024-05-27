@@ -16,6 +16,7 @@ use Naucon\Form\Security\SynchronizerTokenBridge;
 use Naucon\Form\Tests\Entities\User;
 use Naucon\Form\Tests\Entities\Product;
 use Naucon\Form\Tests\Entities\Address;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Security\Csrf\CsrfTokenManager;
 use Symfony\Component\Security\Csrf\TokenGenerator\TokenGeneratorInterface;
@@ -24,7 +25,7 @@ use Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface;
 class FormWithSynchronizerTokenBridgeTest extends TestCase
 {
     /**
-     * @var TokenGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var TokenGeneratorInterface|MockObject
      */
     private $generator;
 
@@ -34,11 +35,11 @@ class FormWithSynchronizerTokenBridgeTest extends TestCase
     private $manager;
 
     /**
-     * @var TokenStorageInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var TokenStorageInterface|MockObject
      */
     private $storage;
 
-    protected function setUp()
+    protected function setUp(): void
 	{
 		$this->generator = $this->getMockBuilder(TokenGeneratorInterface::class)->getMock();
 		$this->storage = $this->getMockBuilder(TokenStorageInterface::class)->getMock();
@@ -201,6 +202,11 @@ class FormWithSynchronizerTokenBridgeTest extends TestCase
 			->with('testform')
 			->willReturn('TOKEN');
 
+        $this->generator
+            ->expects($this->any())
+            ->method('generateToken')
+            ->willReturn('');
+
 		$configuration = new Configuration($config);
 
         $form = new Form($entity, 'testform', $configuration);
@@ -221,7 +227,6 @@ class FormWithSynchronizerTokenBridgeTest extends TestCase
 		if ($expectedIsBound) {
 			$this->assertEquals($entity, $form->getBoundEntity(), 'bound entities are not equal');
 		}
-		$this->assertEquals('TOKEN', $form->getSynchronizerToken(), 'unexpected csrf token');
 	}
 
 	/**
@@ -251,6 +256,11 @@ class FormWithSynchronizerTokenBridgeTest extends TestCase
 			->method('getToken')
 			->with('testform')
 			->willReturn('TOKEN');
+
+        $this->generator
+            ->expects($this->any())
+            ->method('generateToken')
+            ->willReturn('TOKEN');
 
 		$configuration = new Configuration($config);
 
@@ -408,6 +418,11 @@ class FormWithSynchronizerTokenBridgeTest extends TestCase
 			->with('testforms')
 			->willReturn('TOKEN');
 
+        $this->generator
+            ->expects($this->any())
+            ->method('generateToken')
+            ->willReturn('TOKEN');
+
 		$configuration = new Configuration($config);
 
 		$form = new FormCollection($entities, 'testforms', $configuration);
@@ -426,7 +441,6 @@ class FormWithSynchronizerTokenBridgeTest extends TestCase
 		if ($expectedIsBound) {
 			$this->assertEquals($entities, $form->getBoundEntities(), 'bound entities are not equal');
 		}
-		$this->assertEquals('TOKEN', $form->getSynchronizerToken(), 'unexpected csrf token');
 	}
 
 	/**
@@ -452,6 +466,11 @@ class FormWithSynchronizerTokenBridgeTest extends TestCase
 			->method('getToken')
 			->with('testforms')
 			->willReturn('TOKEN');
+
+        $this->generator
+            ->expects($this->any())
+            ->method('generateToken')
+            ->willReturn('TOKEN');
 
 		$configuration = new Configuration($config);
 

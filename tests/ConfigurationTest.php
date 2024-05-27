@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
 
 class ConfigurationTest extends TestCase
 {
-    public function configProvider()
+    public function configProvider(): array
     {
         return array(
             array(

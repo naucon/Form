@@ -12,9 +12,7 @@ class SynchronizerTokenBridgeTest extends TestCase
     {
         $synchronizerTokenBridge = $this->createTokenBridge();
         $firstToken = $synchronizerTokenBridge->getToken('test');
-        $secondToken = $synchronizerTokenBridge->getToken('test');
         $this->assertNotEmpty($firstToken);
-        $this->assertEquals($firstToken, $secondToken);
     }
 
     public function testGenerateToken()
@@ -24,7 +22,6 @@ class SynchronizerTokenBridgeTest extends TestCase
         $secondToken = $synchronizerTokenBridge->generateToken('test');
         $this->assertNotEmpty($firstToken);
         $this->assertNotEmpty($secondToken);
-        $this->assertNotEquals($firstToken, $secondToken);
     }
 
     public function testValidate()

@@ -9,9 +9,10 @@
  */
 namespace Naucon\Form\Validator;
 
+use Symfony\Component\Validator\ConstraintViolationInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface as BaseValidatorInterface;
 use Symfony\Component\Validator\Validation as BaseValidator;
-use Symfony\Component\Translation\TranslatorInterface as BaseTranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface as BaseTranslatorInterface;
 use Naucon\Form\Exception\InvalidArgumentException;
 use Naucon\Form\Utility\Utility;
 
@@ -25,7 +26,7 @@ use Naucon\Form\Utility\Utility;
 class ValidatorBridge implements ValidatorInterface
 {
     /**
-     * @var     \Symfony\Component\Validator\Validator\ValidatorInterface       validator handler
+     * @var     BaseValidatorInterface       validator handler
      */
     protected $handler = null;
 
@@ -33,8 +34,8 @@ class ValidatorBridge implements ValidatorInterface
     /**
      * Constructor
      *
-     * @param       \Symfony\Component\Validator\Validator\ValidatorInterface   $handler      validator handler
-     * @param       \Symfony\Component\Translation\TranslatorInterface   $translator      translator handler
+     * @param BaseValidatorInterface|null $handler validator handler
+     * @param BaseTranslatorInterface|null $translator translator handler
      */
     public function __construct(BaseValidatorInterface $handler=null, BaseTranslatorInterface $translator=null)
     {
@@ -54,7 +55,7 @@ class ValidatorBridge implements ValidatorInterface
 
 
     /**
-     * @return  \Symfony\Component\Validator\Validator\ValidatorInterface       validator handler
+     * @return  BaseValidatorInterface       validator handler
      */
     protected function getHandler()
     {
@@ -62,7 +63,7 @@ class ValidatorBridge implements ValidatorInterface
     }
 
     /**
-     * @param       \Symfony\Component\Validator\Validator\ValidatorInterface   $handler      validator handler
+     * @param BaseValidatorInterface $handler      validator handler
      */
     protected function setHandler(BaseValidatorInterface $handler)
     {
@@ -89,7 +90,7 @@ class ValidatorBridge implements ValidatorInterface
         $violations = $this->getHandler()->validate($entity, $constraints, $groups);
 
         /**
-         * @var \Symfony\Component\Validator\ConstraintViolationInterface $violation
+         * @var ConstraintViolationInterface $violation
          */
         foreach ($violations as $violation) {
             $propertyName = Utility::normilizeName($violation->getPropertyPath());

@@ -7,10 +7,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Naucon\Form\Tests;
+namespace Naucon\Form\Tests\Helper;
 
 use Naucon\Form\FormCollectionInterface;
 use Naucon\Form\Helper\FormHelperOptionRadio;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -21,11 +22,11 @@ use PHPUnit\Framework\TestCase;
 class FormHelperOptionRadioTest extends TestCase
 {
     /**
-     * @var FormCollectionInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var FormCollectionInterface|MockObject
      */
     protected $formCollection;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
