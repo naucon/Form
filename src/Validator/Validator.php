@@ -11,7 +11,7 @@ namespace Naucon\Form\Validator;
 
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Validator\Validation as BaseValidation;
-use Symfony\Component\Validator\ValidatorBuilderInterface as BaseValidatorBuilderInterface;
+use Symfony\Component\Validator\ValidatorBuilder;
 use Naucon\Form\Configuration;
 use Naucon\Form\Translator\TranslatorInterface;
 
@@ -58,10 +58,10 @@ class Validator extends ValidatorBridge
     /**
      * add validation mapping
      *
-     * @param \Symfony\Component\Validator\ValidatorBuilderInterface  $builder
+     * @param ValidatorBuilder $builder
      * @param string|array  $dirs       A directory path or an array of directories
      */
-    public function addValidationMapping(BaseValidatorBuilderInterface $builder, $dirs)
+    public function addValidationMapping(ValidatorBuilder $builder, $dirs)
     {
         if (empty($dirs)) {
             return;

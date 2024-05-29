@@ -14,8 +14,6 @@ use Naucon\Form\Configuration;
 use Naucon\Form\Mapper\EntityContainerInterface;
 use Naucon\Form\Helper\FormHelperMap;
 use Naucon\Form\Tests\Entities\User;
-use Naucon\Form\Tests\Helper\FormHelperFieldFoo;
-use Naucon\Form\Tests\Helper\FormHelperFieldBar;
 use PHPUnit\Framework\TestCase;
 
 class FormHelperMapTest extends TestCase

@@ -7,7 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Naucon\Form\Tests;
+namespace Naucon\Form\Tests\Helper;
 
 use Naucon\Form\FormInterface;
 use Naucon\Form\Helper\FormHelperFieldId;
@@ -15,6 +15,7 @@ use Naucon\Form\Mapper\EntityContainerInterface;
 use Naucon\Form\Mapper\Property;
 use Naucon\Form\Tests\Entities\User;
 use Naucon\Utility\Map;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -25,17 +26,17 @@ use PHPUnit\Framework\TestCase;
 class FormHelperFieldIdTest extends TestCase
 {
     /**
-     * @var FormInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var FormInterface|MockObject
      */
     protected $form;
 
     /**
-     * @var EntityContainerInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var EntityContainerInterface|MockObject
      */
     protected $entityContainer;
 
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

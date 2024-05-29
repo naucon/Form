@@ -9,7 +9,7 @@
  */
 namespace Naucon\Form\Translator;
 
-use Symfony\Component\Translation\TranslatorInterface as BaseTranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface as BaseTranslatorInterface;
 
 /**
  * Translator Bridge to Symfony Translator Component
@@ -21,14 +21,14 @@ use Symfony\Component\Translation\TranslatorInterface as BaseTranslatorInterface
 class TranslatorBridge implements TranslatorInterface
 {
     /**
-     * @var     \Symfony\Component\Translation\TranslatorInterface       translator handler
+     * @var TranslatorInterface       translator handler
      */
     protected $handler;
 
     /**
      * Constructor
      *
-     * @param       \Symfony\Component\Translation\TranslatorInterface   $handler      translator handler
+     * @param TranslatorInterface   $handler      translator handler
      */
     public function __construct(BaseTranslatorInterface $handler)
     {
@@ -36,7 +36,7 @@ class TranslatorBridge implements TranslatorInterface
     }
 
     /**
-     * @return  \Symfony\Component\Translation\TranslatorInterface       translator handler
+     * @return TranslatorInterface       translator handler
      */
     protected function getHandler()
     {
@@ -44,7 +44,7 @@ class TranslatorBridge implements TranslatorInterface
     }
 
     /**
-     * @param       \Symfony\Component\Translation\TranslatorInterface   $handler      translator handler
+     * @param TranslatorInterface   $handler      translator handler
      */
     protected function setHandler(BaseTranslatorInterface $handler)
     {

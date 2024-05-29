@@ -7,7 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Naucon\Form\Tests;
+namespace Naucon\Form\Tests\Helper;
 
 use Naucon\Form\Helper\FormHelperChoiceSelect;
 use Naucon\Form\Mapper\Property;

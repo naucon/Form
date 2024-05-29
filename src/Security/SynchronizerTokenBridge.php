@@ -23,7 +23,7 @@ use Symfony\Component\Security\Csrf\CsrfToken as BaseCsrfToken;
 class SynchronizerTokenBridge implements SynchronizerTokenInterface
 {
     /**
-     * @var     \Symfony\Component\Security\Csrf\CsrfTokenManagerInterface       synchronizer token handler
+     * @var     BaseCsrfTokenManagerInterface       synchronizer token handler
      */
     protected $handler = null;
 
@@ -32,7 +32,7 @@ class SynchronizerTokenBridge implements SynchronizerTokenInterface
     /**
      * Constructor
      *
-     * @param       \Symfony\Component\Security\Csrf\CsrfTokenManagerInterface   $handler      optional synchronizer token handler
+     * @param BaseCsrfTokenManagerInterface $handler      optional synchronizer token handler
      */
     public function __construct(BaseCsrfTokenManagerInterface $handler=null)
     {
@@ -45,7 +45,7 @@ class SynchronizerTokenBridge implements SynchronizerTokenInterface
 
 
     /**
-     * @return  \Symfony\Component\Security\Csrf\CsrfTokenManagerInterface       synchronizer token handler
+     * @return  BaseCsrfTokenManagerInterface       synchronizer token handler
      */
     protected function getHandler()
     {
