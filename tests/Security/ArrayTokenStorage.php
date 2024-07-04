@@ -14,7 +14,7 @@ class ArrayTokenStorage implements TokenStorageInterface
      * @param string $tokenId
      * @return string
      */
-    public function getToken($tokenId)
+    public function getToken($tokenId): string
     {
         if ($this->hasToken($tokenId) === false) {
             throw new TokenNotFoundException();
@@ -35,7 +35,7 @@ class ArrayTokenStorage implements TokenStorageInterface
      * @param string $tokenId
      * @return string|null
      */
-    public function removeToken($tokenId)
+    public function removeToken($tokenId): ?string
     {
         $removedToken = $this->hasToken($tokenId) ? $this->getToken($tokenId) : null;
         unset($this->tokenStore[$tokenId]);
@@ -46,7 +46,7 @@ class ArrayTokenStorage implements TokenStorageInterface
      * @param string $tokenId
      * @return bool
      */
-    public function hasToken($tokenId)
+    public function hasToken($tokenId): bool
     {
         return isset($this->tokenStore[$tokenId]);
     }

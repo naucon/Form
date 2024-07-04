@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Naucon\Form\Tests;
 
 use Naucon\Form\Form;
@@ -104,13 +105,13 @@ class FormWithValidatorTest extends TestCase
 
     /**
      * @dataProvider entityProvider
-     * @param    object     $entity             entity a plain old php object
-     * @param	 array		$config			    form configuration
-     * @param    array      $methods            array of getters for the entity
-     * @param    array      $dataMap            form data
-     * @param    bool       $expectedIsBound    expected form bind result
-     * @param    bool       $expectedIsValid    expected form validation result
-     * @param    array      $expectedErrors     expected form validation errors
+     * @param object $entity entity a plain old php object
+     * @param array $config form configuration
+     * @param array $methods array of getters for the entity
+     * @param array $dataMap form data
+     * @param bool $expectedIsBound expected form bind result
+     * @param bool $expectedIsValid expected form validation result
+     * @param array $expectedErrors expected form validation errors
      */
     public function testFormBindWithYmlValidator($entity, $config, $methods, $dataMap, $expectedIsBound, $expectedIsValid, $expectedErrors)
     {
@@ -156,13 +157,13 @@ class FormWithValidatorTest extends TestCase
 
     /**
      * @dataProvider entityProvider
-     * @param    object     $entity             entity a plain old php object
-     * @param	 array		$config			    form configuration
-     * @param    array      $methods            array of getters for the entity
-     * @param    array      $dataMap            form data
-     * @param    bool       $expectedIsBound    expected form bind result
-     * @param    bool       $expectedIsValid    expected form validation result
-     * @param    array      $expectedErrors     expected form validation errors
+     * @param object $entity entity a plain old php object
+     * @param array $config form configuration
+     * @param array $methods array of getters for the entity
+     * @param array $dataMap form data
+     * @param bool $expectedIsBound expected form bind result
+     * @param bool $expectedIsValid expected form validation result
+     * @param array $expectedErrors expected form validation errors
      */
     public function testFormBindWithXmlValidator($entity, $config, $methods, $dataMap, $expectedIsBound, $expectedIsValid, $expectedErrors)
     {
@@ -293,13 +294,13 @@ class FormWithValidatorTest extends TestCase
 
     /**
      * @dataProvider entityProviderWithAnnotation
-     * @param    object     $entity             entity a plain old php object
-     * @param	 array		$config			    form configuration
-     * @param    array      $methods            array of getters for the entity
-     * @param    array      $dataMap            form data
-     * @param    bool       $expectedIsBound    expected form bind result
-     * @param    bool       $expectedIsValid    expected form validation result
-     * @param    array      $expectedErrors     expected form validation errors
+     * @param object $entity entity a plain old php object
+     * @param array $config form configuration
+     * @param array $methods array of getters for the entity
+     * @param array $dataMap form data
+     * @param bool $expectedIsBound expected form bind result
+     * @param bool $expectedIsValid expected form validation result
+     * @param array $expectedErrors expected form validation errors
      */
     public function testFormBindWithAnnotationValidator($entity, $config, $methods, $dataMap, $expectedIsBound, $expectedIsValid, $expectedErrors)
     {

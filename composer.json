@@ -24,7 +24,8 @@
         "symfony/finder": "^4.0 || ^5.0 || ^6.0",
         "symfony/options-resolver": "^4.0 || ^5.0 || ^6.0",
         "symfony/translation": "^4.0 || ^5.0 || ^6.0",
-        "symfony/yaml": "^4.0 || ^5.0 || ^6.0"
+        "symfony/yaml": "^4.0 || ^5.0 || ^6.0",
+        "symfony/cache": "^4.0 || ^5.0 || ^6.4"
     },
     "require-dev": {
         "symfony/intl": "^4.0 || ^5.0 || ^6.0",

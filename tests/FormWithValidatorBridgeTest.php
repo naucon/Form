@@ -7,6 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Naucon\Form\Tests;
 
 use Naucon\Form\Form;
@@ -21,97 +22,97 @@ class FormWithValidatorBridgeTest extends TestCase
 {
     public function entityProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 new UserWithConfig(),
-                array(),
-                array(
+                [],
+                [
                     'username' => 'getUsername',
                     'firstname' => 'getFirstname',
                     'lastname' => 'getLastname',
                     'email' => 'getEmail',
                     'age' => 'getAge'
-                ),
-                array(
+                ],
+                [
                     'username' => 'max.mustermann',
                     'firstname' => 'Max',
                     'lastname' => 'Mustermann',
                     'email' => 'max.mustermann@yourdomain.com',
                     'age' => '18'
-                ),
+                ],
                 true,
                 true,
-                array(),
+                [],
                 'valid dataset user form'
-            ),
-            array(
+            ],
+            [
                 new UserWithConfig(),
-                array(),
-                array(
+                [],
+                [
                     'username' => 'getUsername',
                     'firstname' => 'getFirstname',
                     'lastname' => 'getLastname',
                     'email' => 'getEmail',
                     'age' => 'getAge'
-                ),
-                array(
+                ],
+                [
                     'username' => '',
                     'firstname' => 'Max',
                     'lastname' => 'Mustermann',
                     'email' => 'max.mustermann@yourdomain.com',
                     'age' => 'monday'
-                ),
+                ],
                 true,
                 false,
-                array('username', 'age'),
+                ['username', 'age'],
                 'invalid dataset user form with missing username and wrong age type'
-            ),
-            array(
+            ],
+            [
                 new UserWithConfig(),
-                array(),
-                array(
+                [],
+                [
                     'username' => 'getUsername',
                     'firstname' => 'getFirstname',
                     'lastname' => 'getLastname',
                     'email' => 'getEmail',
                     'age' => 'getAge'
-                ),
-                array(
+                ],
+                [
                     'email' => 'max.mustermann@yourdomain.com',
-                ),
+                ],
                 true,
                 false,
-                array('username'),
+                ['username'],
                 'invalid dataset user form with missing username'
-            ),
-            array(
+            ],
+            [
                 new UserWithConfig(),
-                array(),
-                array(
+                [],
+                [
                     'username' => 'getUsername',
                     'firstname' => 'getFirstname',
                     'lastname' => 'getLastname',
                     'email' => 'getEmail',
                     'age' => 'getAge'
-                ),
-                array(),
+                ],
+                [],
                 false,
                 false,
-                array('username'),
+                ['username'],
                 'invalid dataset user form with missing form data'
-            )
-        );
+            ]
+        ];
     }
 
     /**
      * @dataProvider entityProvider
-     * @param    object     $entity             entity a plain old php object
-     * @param	 array		$config			    form configuration
-     * @param    array      $methods            array of getters for the entity
-     * @param    array      $dataMap            form data
-     * @param    bool       $expectedIsBound    expected form bind result
-     * @param    bool       $expectedIsValid    expected form validation result
-     * @param    array      $expectedErrors     expected form validation errors
+     * @param object $entity entity a plain old php object
+     * @param array $config form configuration
+     * @param array $methods array of getters for the entity
+     * @param array $dataMap form data
+     * @param bool $expectedIsBound expected form bind result
+     * @param bool $expectedIsValid expected form validation result
+     * @param array $expectedErrors expected form validation errors
      */
     public function testFormBindWithYmlValidator($entity, $config, $methods, $dataMap, $expectedIsBound, $expectedIsValid, $expectedErrors)
     {
@@ -119,7 +120,7 @@ class FormWithValidatorBridgeTest extends TestCase
             $this->assertEquals('', $entity->$method());
         }
 
-        $configPaths = array(__DIR__ . '/Resources/config/yml/validation.yml');
+        $configPaths = [__DIR__ . '/Resources/config/yml/validation.yml'];
 
         $handler = Validation::createValidatorBuilder()
             ->addYamlMappings($configPaths)
@@ -132,7 +133,7 @@ class FormWithValidatorBridgeTest extends TestCase
         $form = new Form($entity, 'testform', $configuration);
         $form->setValidator($validatorBridge);
 
-        $payload = array();
+        $payload = [];
         $payload['_csrf_token'] = $form->getSynchronizerToken();
         if (count($dataMap)) {
             $payload['testform'] = $dataMap;
@@ -162,13 +163,13 @@ class FormWithValidatorBridgeTest extends TestCase
 
     /**
      * @dataProvider entityProvider
-     * @param    object     $entity             entity a plain old php object
-     * @param	 array		$config			    form configuration
-     * @param    array      $methods            array of getters for the entity
-     * @param    array      $dataMap            form data
-     * @param    bool       $expectedIsBound    expected form bind result
-     * @param    bool       $expectedIsValid    expected form validation result
-     * @param    array      $expectedErrors     expected form validation errors
+     * @param object $entity entity a plain old php object
+     * @param array $config form configuration
+     * @param array $methods array of getters for the entity
+     * @param array $dataMap form data
+     * @param bool $expectedIsBound expected form bind result
+     * @param bool $expectedIsValid expected form validation result
+     * @param array $expectedErrors expected form validation errors
      */
     public function testFormBindWithXmlValidator($entity, $config, $methods, $dataMap, $expectedIsBound, $expectedIsValid, $expectedErrors)
     {
@@ -176,7 +177,7 @@ class FormWithValidatorBridgeTest extends TestCase
             $this->assertEquals('', $entity->$method());
         }
 
-        $configPaths = array(__DIR__ . '/Resources/config/xml/validation.xml');
+        $configPaths = [__DIR__ . '/Resources/config/xml/validation.xml'];
 
         $handler = Validation::createValidatorBuilder()
             ->addXmlMappings($configPaths)
@@ -189,7 +190,7 @@ class FormWithValidatorBridgeTest extends TestCase
         $form = new Form($entity, 'testform', $configuration);
         $form->setValidator($validatorBridge);
 
-        $payload = array();
+        $payload = [];
         $payload['_csrf_token'] = $form->getSynchronizerToken();
         if (count($dataMap)) {
             $payload['testform'] = $dataMap;
@@ -219,97 +220,97 @@ class FormWithValidatorBridgeTest extends TestCase
 
     public function entityProviderWithAnnotation()
     {
-        return array(
-            array(
+        return [
+            [
                 new UserWithAnnotation(),
-                array(),
-                array(
+                [],
+                [
                     'username' => 'getUsername',
                     'firstname' => 'getFirstname',
                     'lastname' => 'getLastname',
                     'email' => 'getEmail',
                     'age' => 'getAge'
-                ),
-                array(
+                ],
+                [
                     'username' => 'max.mustermann',
                     'firstname' => 'Max',
                     'lastname' => 'Mustermann',
                     'email' => 'max.mustermann@yourdomain.com',
                     'age' => '18'
-                ),
+                ],
                 true,
                 true,
-                array(),
+                [],
                 'valid dataset user form'
-            ),
-            array(
+            ],
+            [
                 new UserWithAnnotation(),
-                array(),
-                array(
+                [],
+                [
                     'username' => 'getUsername',
                     'firstname' => 'getFirstname',
                     'lastname' => 'getLastname',
                     'email' => 'getEmail',
                     'age' => 'getAge'
-                ),
-                array(
+                ],
+                [
                     'username' => '',
                     'firstname' => 'Max',
                     'lastname' => 'Mustermann',
                     'email' => 'max.mustermann@yourdomain.com',
                     'age' => 'monday'
-                ),
+                ],
                 true,
                 false,
-                array('username', 'age'),
+                ['username', 'age'],
                 'invalid dataset user form with missing username and wrong age type'
-            ),
-            array(
+            ],
+            [
                 new UserWithAnnotation(),
-                array(),
-                array(
+                [],
+                [
                     'username' => 'getUsername',
                     'firstname' => 'getFirstname',
                     'lastname' => 'getLastname',
                     'email' => 'getEmail',
                     'age' => 'getAge'
-                ),
-                array(
+                ],
+                [
                     'email' => 'max.mustermann@yourdomain.com',
-                ),
+                ],
                 true,
                 false,
-                array('username'),
+                ['username'],
                 'invalid dataset user form with missing username'
-            ),
-            array(
+            ],
+            [
                 new UserWithAnnotation(),
-                array(),
-                array(
+                [],
+                [
                     'username' => 'getUsername',
                     'firstname' => 'getFirstname',
                     'lastname' => 'getLastname',
                     'email' => 'getEmail',
                     'age' => 'getAge'
-                ),
-                array(),
+                ],
+                [],
                 false,
                 false,
-                array('username'),
+                ['username'],
                 'invalid dataset user form with missing form data'
-            )
-        );
+            ]
+        ];
     }
 
     /**
      * @dataProvider entityProviderWithAnnotation
-     * @param    object     $entity             entity a plain old php object
-     * @param	 array		$config			    form configuration
-     * @param    array      $methods            array of getters for the entity
-     * @param    array      $dataMap            form data
-     * @param    bool       $expectedIsBound    expected form bind result
-     * @param    bool       $expectedIsValid    expected form validation result
-     * @param    array      $expectedErrors     expected form validation errors
+     * @param object $entity entity a plain old php object
+     * @param array $config form configuration
+     * @param array $methods array of getters for the entity
+     * @param array $dataMap form data
+     * @param bool $expectedIsBound expected form bind result
+     * @param bool $expectedIsValid expected form validation result
+     * @param array $expectedErrors expected form validation errors
      */
     public function testFormBindWithAnnotationValidator($entity, $config, $methods, $dataMap, $expectedIsBound, $expectedIsValid, $expectedErrors)
     {
@@ -318,7 +319,8 @@ class FormWithValidatorBridgeTest extends TestCase
         }
 
         $handler = Validation::createValidatorBuilder()
-            ->enableAnnotationMapping()
+            ->enableAttributeMapping()
+            ->addDefaultDoctrineAnnotationReader()
             ->getValidator();
 
         $validatorBridge = new ValidatorBridge($handler);
@@ -328,7 +330,7 @@ class FormWithValidatorBridgeTest extends TestCase
         $form = new Form($entity, 'testform', $configuration);
         $form->setValidator($validatorBridge);
 
-        $payload = array();
+        $payload = [];
         $payload['_csrf_token'] = $form->getSynchronizerToken();
         if (count($dataMap)) {
             $payload['testform'] = $dataMap;
