@@ -28,7 +28,7 @@
         "symfony/cache": "^6.0"
     },
     "require-dev": {
-        "symfony/intl": "^^6.0",
+        "symfony/intl": "^6.0",
         "symfony/config": "^6.0",
         "naucon/iban": "~1.0",
         "phpunit/phpunit": "^9.0",
