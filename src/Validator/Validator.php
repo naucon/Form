@@ -43,7 +43,8 @@ class Validator extends ValidatorBridge
         }
 
         $builder = BaseValidation::createValidatorBuilder();
-        $builder->enableAnnotationMapping();
+        $builder->enableAttributeMapping()
+            ->addDefaultDoctrineAnnotationReader();
         $builder->addMethodMapping('loadValidatorMetadata');
         if (!is_null($translator)) {
             $builder->setTranslator($translator);
